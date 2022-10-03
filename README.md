@@ -258,10 +258,12 @@ Leave this Cloud Shell running while you complete the next steps.
 From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
 Make sure to select the project you created at the beginning of the lab.  In this example, the project is 'biglake-demov4'.
 <br><br>
-Click on the usa-dataproc-cluster link<br>
-Then click on the 'WEB INTERFACES' link <br>
-Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
-Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
+#Next:
+
+1. Click on the usa-dataproc-cluster link<br>
+2. Then click on the 'WEB INTERFACES' link <br>
+3. Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
+4. Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
 ![PICT4](./images/jupyter1.png)
 <br><br>
 In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
@@ -275,20 +277,21 @@ You can then close the the terminal screen.
 
 ### 3.2.3 Run the 'IceCream.ipynb' Notebook...
 From the Jupyter Lab tab you created above, doublce click on the 'IceCream.ipynb' file as shown below...<br>
-Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
-A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
+1. Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
+2. A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
 ![PICT5](./images/jupyter1.png)
+<br><br>
+
 In the second cell, change <your-project-name-here> to the your project name 
 ![PICT5](./images/jupyter2.png)
-<br>
+<br><br>
 In this example, the project name is 'biglake-demov4' as shown below:
 ![PICT6](./images/jupyter3.png)
-<br>
+<br><br>
 You can now run all cells.  From the 'Run..Run all Cells' menu.   <br>
 Below cell 3, you should see data only for the 'United States' as shown below:
 ![PICT7](./images/jupyter4.png)
-<br>
-
+<br><br>
 
 ### 3.3. Jupyter Notebook (Aus User - aus_user)
 
