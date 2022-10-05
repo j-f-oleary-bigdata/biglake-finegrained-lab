@@ -376,30 +376,31 @@ kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 * Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
 * A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
 ![PICT5](./images/jupyter1.png)
-- In the second cell, change &lt;your-project-name-here&gt;to the your project name 
+* In the second cell, change &lt;your-project-name-here&gt;to the your project name<br>
 ![PICT5](./images/jupyter2.png)
-<br>
-- In this example, the project name is 'biglake-demov4' as shown below:<br>
+
+* In this example, the project name is 'biglake-demov4' as shown below:<br>
 ![PICT6](./images/jupyter8.png)
-<br>
+
+
 - You can now run all cells.  
 * From the 'Run..Run all Cells' menu.   <br>
 * Below cell 2, you should see an error because the Marketing User does not have access to certain columns: <br>
 ![PICT7](./images/jupyter5.png)
 <br>
-- Remove the comments in the line '#.select("Gross_Revenue", "Month", "Country")' and the line above
-- Also, change 'df.show(10)' to 'df.show(100)'
-- Then run all cells again. <BR>
-- This time, you should see data for both the 'United States' and 'Australia' in cell 3.
+* Remove the comments in the line '#.select("Gross_Revenue", "Month", "Country")' and the line above<br>
+* Also, change 'df.show(10)' to 'df.show(100)'<br>
+* Then run all cells again. <br>
+* This time, you should see data for both the 'United States' and 'Australia' in cell 3.<br>
+<br>
 
-
-### 4. To destroy the deployment [DO NOT RUN THIS, ITS JUST FYI]
+### 4. To destroy the deployment
 
 You can (a) shutdown the project altogether in GCP Cloud Console or (b) use Terraform to destroy. Use (b) at your own risk as its a little glitchy while (a) is guaranteed to stop the billing meter pronto.
 <br>
 Needs to run in cloud shell from ~/spark-kafka-lab/spark-on-gcp-with-confluent-kafka/01-environment-setup
 ```
-#terraform apply \
+#terraform destroy \
   -var="project_id=${PROJECT_ID}" \
   -var="project_nbr=${PROJECT_NBR}" \
   -var="org_id=${ORG_ID}" \
