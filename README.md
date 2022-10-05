@@ -138,8 +138,9 @@ echo "MKT_USERNAME=$MKT_USERNAME"
 
 <br><br>
 
-Needs to run in cloud shell from ~/biglake-demo/org_policy
+Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 ```
+cd ~/biglake-finegrained-demo/org_policy
 terraform init
 ```
 
@@ -147,7 +148,7 @@ terraform init
 
 <br><br>
 
-Needs to run in cloud shell from ~/biglake-demo/org_policy
+Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 ```
 terraform apply \
   -var="project_id=${PROJECT_ID}" \
@@ -159,13 +160,14 @@ terraform apply \
 
 <br><br>
 
-Needs to run in cloud shell from ~/biglake-demo/demo
+Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
+cd ~/biglake-finegrained-demo/demo
 terraform init
 ```
 
 #### 2.4.5. Review the Terraform deployment plan
-Needs to run in cloud shell from ~/spark-kafka-lab/spark-on-gcp-with-confluent-kafka/01-environment-setup
+Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
 terraform plan \
   -var="project_id=${PROJECT_ID}" \
@@ -178,7 +180,7 @@ terraform plan \
 ```
 
 #### 2.4.6. Provision the environment
-Needs to run in cloud shell from ~/spark-kafka-lab/spark-on-gcp-with-confluent-kafka/01-environment-setup
+Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
 terraform apply \
   -var="project_id=${PROJECT_ID}" \
@@ -397,9 +399,10 @@ kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 
 You can (a) shutdown the project altogether in GCP Cloud Console or (b) use Terraform to destroy. Use (b) at your own risk as its a little glitchy while (a) is guaranteed to stop the billing meter pronto.
 <br>
-Needs to run in cloud shell from ~/spark-kafka-lab/spark-on-gcp-with-confluent-kafka/01-environment-setup
+Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
-#terraform destroy \
+cd ~/biglake-finegrained-demo/demo
+terraform destroy \
   -var="project_id=${PROJECT_ID}" \
   -var="project_nbr=${PROJECT_NBR}" \
   -var="org_id=${ORG_ID}" \
