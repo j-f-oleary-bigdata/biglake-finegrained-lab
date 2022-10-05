@@ -253,7 +253,7 @@ resource "google_storage_bucket" "create_buckets" {
 
 }
 
-resource "google_storage_bucket" "create_temp_buckets" {
+resource "google_storage_bucket" "create_temp_bucket" {
 
   name                              = local.dataproc_temp_bucket
   location                          = local.location
@@ -284,7 +284,7 @@ resource "google_storage_bucket_iam_binding" "temp_dataproc_bucket_policy" {
           "user:${var.mkt_username}@${var.org_id}"
   ]
 
-  depends_on = [google_storage_bucket.create_buckets]
+  depends_on = [google_storage_bucket.create_temp_bucket]
 }
 
 resource "google_storage_bucket_iam_binding" "aus_dataproc_bucket_policy" {

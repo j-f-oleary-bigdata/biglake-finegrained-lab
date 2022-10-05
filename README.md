@@ -1,43 +1,45 @@
 
-# About
+# About<br>
 This module covers the foundational setup required for the BigLake Fine Grained Permissions Demo.
 
 
 ## 0. Prerequisites 
 
-#### 1. Create a project".<br>
+### 1. Create a project".<br>
 Note the project number and project ID. <br>
 We will need this for the rest fo the lab.<br>
-#### 2. Grant yourself security admin role<br>
+### 2. Grant yourself security admin role<br>
 This is needed for the networking setup.<br>
 Go to Cloud IAM and through the UI, grant yourself security admin role.
-#### 3. Grant yourself Organization Policy Administrator at an Organization level<br>
+### 3. Grant yourself Organization Policy Administrator at an Organization level<br>
 This is needed to set project level policies<br>
 In the UI, set context to organization level (instead of project)<br>
 Go to Cloud IAM and through the UI, grant yourself Organization Policy Administrator at an Organization level.<br>
 Don't forget to set the project back to the project you created in Step 1 above in the UI.
-#### 4. Create 3 user accounts<br>
+### 4. Create 3 user accounts<br>
 Go To admin.google.com...<br>
-Click on 'Add a user'<br>
-And add a user as shown below:
+* Click on 'Add a user'<br>
+* And add a user as shown below:<br><br>
 ![PICT1](./images/add_user.png) 
-<p>
-You will add three users: <br>
-#1. One user with access to all USA records in the dataset
-#2. One user with access to all Australia records in the dataset
-#3. One marketing user with access to both USA and Australia recoreds but restricted to certain columns
+
 <br>
-While you can use any usernames you want, we recommend you use the following as we have tested with these:
-#1. usa_user
-#2. aus_user
-#3. mkt_user
+- You will add three users: <br>
+1. One user with access to all USA records in the dataset <br>
+2. One user with access to all Australia records in the dataset<br>
+3. One marketing user with access to both USA and Australia recoreds but restricted to certain columns<br>
+<br>
+- While you can use any usernames you want, we recommend you use the following as we have tested with these: <br>
+1. usa_user <br>
+2. aus_user <br>
+3. mkt_user <br>
 
-
-#### 5. Create Separate Chrome Profiles for 1 or More of the User Accounts
+<br> <br>
+### 5. Create Separate Chrome Profiles for 1 or More of the User Accounts
 To make it easier to demo the three different personas (users) we recommend you set up 3 profiles in your browser<br>
-
-To add a profile, click on your profile picture at the far right of the screen next to the vertical 3 dots. <br>
-Then click on '+ Add' at the bottom of the screen as shown below: <br>
+<br>
+- To add a profile<br>
+* click on your profile picture at the far right of the screen next to the vertical 3 dots. <br>
+* Then click on '+ Add' at the bottom of the screen as shown below: <br>
 ![PICT2](./images/add_profile.png) 
 <br>
 
@@ -198,29 +200,30 @@ terraform apply \
 
 From your admin account, go to the cloud console and then the BigQuery UI<br><br>
 Validate that you have the following resources as shown in the screeshot below:
-#1. An external connection called 'us-central1.biglake.gcs'
-#2. A dataset called biglake_dataset
-#3. A table called IceCreamSales
-<br>
+1. An external connection called 'us-central1.biglake.gcs'
+2. A dataset called biglake_dataset
+3. A table called IceCreamSales
+<br><br>
 ![PICT3](./images/bigquery.png) 
 
 
 ### 3.2. Dataproc Instances (3)
 
 From your admin account, go to the cloud console and then the Dataproc UI<br><br>
-Validate that you have the following three (3) Dataproc Clusters:
-#1. aus-dataproc-cluster
-#2. usa-dataproc-cluster
-#3. mkt-dataproc-cluster
-<br>
+
+- Validate that you have the following three (3) Dataproc Clusters: 
+1. aus-dataproc-cluster
+2. usa-dataproc-cluster
+3. mkt-dataproc-cluster
+<br><br>
 ![PICT3](./images/dataproc.png) 
 
-### 3.2. Jupyter Notebook (USA User)
+### 3.3. Jupyter Notebook (USA User)
 
-### 3.2.1 Create a personal authentication session...
+### 3.3.1 Create a personal authentication session...
 
-From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
-Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
+- From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
+- Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
 ![PICT4](./images/dataproc_user.png)
 <br><br>
 Click on the usa-dataproc-cluster link<br>
@@ -228,7 +231,7 @@ Open up a new cloudshell session by click on the cloudshell link that looks like
 <br>
 Enter the following text:
 <br>
-Make sure to subsitute your project name for <your project name here>
+Make sure to subsitute your project name for &lt;your project name here&gt;
 <br><br>
 ```
 gcloud dataproc clusters enable-personal-auth-session \
@@ -254,7 +257,7 @@ Periodically refreshing credentials for cluster usa-dataproc-cluster. This will 
 
 Leave this Cloud Shell running while you complete the next steps.
 
-### 3.2.2 Initiate the kerberos session on the Personal Dataproc Cluster...
+### 3.3.2 Initiate the kerberos session on the Personal Dataproc Cluster...
 From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
 Make sure to select the project you created at the beginning of the lab.  In this example, the project is 'biglake-demov4'.
 <br><br>
@@ -275,46 +278,52 @@ kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 <br>
 You can then close the the terminal screen.
 
-### 3.2.3 Run the 'IceCream.ipynb' Notebook...
+### 3.3.3 Run the 'IceCream.ipynb' Notebook...
 From the Jupyter Lab tab you created above, doublce click on the 'IceCream.ipynb' file as shown below...<br>
 1. Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
 2. A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
-![PICT5](./images/jupyter1.png)
+![PICT5](./images/jupyter6.png)
 <br><br>
 
-In the second cell, change <your-project-name-here> to the your project name 
+In the second cell, 
+- change &lt;your-project-name-here&gt; to the your project name 
 ![PICT5](./images/jupyter2.png)
 <br><br>
-In this example, the project name is 'biglake-demov4' as shown below:
+- In this example, the project name is 'biglake-demov4' as shown below:
 ![PICT6](./images/jupyter3.png)
 <br><br>
-You can now run all cells.  From the 'Run..Run all Cells' menu.   <br>
-Below cell 3, you should see data only for the 'United States' as shown below:
+- You can now run all cells.  
+* From the 'Run..Run all Cells' menu.   <br>
+* Below cell 3, you should see data only for the 'United States' as shown below:
 ![PICT7](./images/jupyter4.png)
 <br><br>
 
-### 3.3. Jupyter Notebook (Aus User - aus_user)
+### 3.4. Jupyter Notebook (Aus User - aus_user)
 
 Follow steps 3.2.1 and 3.2.2 and 3.2.3 from above but choose the aus-dataproc-cluster instead.<br>
+- Remember to use the 'aus-dataproc-cluster' when running the 'gcloud dataproc clusters...' command <br>
 
-The major difference is that in cell 3, you should see data only for the 'Australia' as shown below:
-![PICT8](./images/jupyter5.png)
+- The major difference is that in cell 3, you should see data only for the 'Australia' as shown below:
+![PICT8](./images/jupyter7.png)
 <br>
 <hr>
-### 3.4. Jupyter Notebook (Marketing User - mkt_user)
 
-### 3.4.1 Create a personal authentication session...
+### 3.5. Jupyter Notebook (Marketing User - mkt_user)
 
-From your Marketing User Account (mkt_user in this example), go to the cloud console and then the Dataproc UI<br><br>
-Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
+### 3.5.1 Create a personal authentication session...
+
+- From your Marketing User Account (mkt_user in this example), 
+* go to the cloud console and then the Dataproc UI<br><br>
+* Make sure to select the project you created in the step above.  
+* In this example, the project is 'biglake-demov4' as shown below:
 ![PICT4](./images/dataproc_user.png)
 <br><br>
-Click on the mkt-dataproc-cluster link<br>
-Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
+- Click on the mkt-dataproc-cluster link<br>
+* Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
 <br>
-Enter the following text:
+* Enter the following text:
 <br>
-Make sure to subsitute your project name for <your project name here>
+* Make sure to subsitute your project name for &lt;your-project-name-here&gt;
 <br><br>
 ```
 gcloud dataproc clusters enable-personal-auth-session \
@@ -324,58 +333,64 @@ gcloud dataproc clusters enable-personal-auth-session \
    mkt-dataproc-cluster
 ```
 
-You will be prompted with:
+- You will be prompted with:
 ```
 A personal authentication session will propagate your personal credentials to the cluster, so make sure you trust the cluster and the user who created it.
 
 Do you want to continue (Y/n)?
 ```
 
-Respond with 'Y' and hit enter <br>
-You will see the following text
+- Respond with 'Y' and hit enter <br>
+* You will see the following text
 ```
 Injecting initial credentials into the cluster usa-dataproc-cluster...done.     
 Periodically refreshing credentials for cluster usa-dataproc-cluster. This will continue running until the command is interrupted...working.  
 ```
 
-Leave this Cloud Shell running while you complete the next steps.
+- Leave this Cloud Shell running while you complete the next steps.
 
-### 3.4.2 Initiate the kerberos session on the Personal Dataproc Cluster...
-From your Marketing User Account (mkt_user in this example), go to the cloud console and then the Dataproc UI<br><br>
-Make sure to select the project you created at the beginning of the lab.  In this example, the project is 'biglake-demov4'.
+### 3.5.2 Initiate the kerberos session on the Personal Dataproc Cluster...
+- From your Marketing User Account (mkt_user in this example), 
+* go to the cloud console and then the Dataproc UI<br><br>
+* Make sure to select the project you created at the beginning of the lab.  
+* In this example, the project is 'biglake-demov4'.
 <br><br>
-Click on the usa-dataproc-cluster link<br>
-Then click on the 'WEB INTERFACES' link <br>
-Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
-Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
+- Click on the usa-dataproc-cluster link<br>
+* Then click on the 'WEB INTERFACES' link <br>
+* Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
+* Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
 ![PICT4](./images/jupyter1.png)
 <br><br>
-In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
-In terminal screen, enter the following:
+- In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
+* In terminal screen, enter the following:
 
 ```
 kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 ```
 <br>
-You can then close the the terminal screen.
+- You can then close the the terminal screen.
 
-### 3.4.3 Run the 'ReadData.ipynb' Notebook...
-From the Jupyter Lab tab you created above, doublce click on the 'ReadData.ipynb' file as shown below...<br>
-Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
-A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
+### 3.5.3 Run the 'ReadData.ipynb' Notebook...
+- From the Jupyter Lab tab you created above, 
+* doublce click on the 'ReadData.ipynb' file as shown below...<br>
+* Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
+* A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
 ![PICT5](./images/jupyter1.png)
-In the second cell, change <your-project-name-here> to the your project name 
+- In the second cell, change &lt;your-project-name-here&gt;to the your project name 
 ![PICT5](./images/jupyter2.png)
 <br>
-In this example, the project name is 'biglake-demov4' as shown below:
-![PICT6](./images/jupyter3.png)
+- In this example, the project name is 'biglake-demov4' as shown below:
+![PICT6](./images/jupyter8.png)
 <br>
-You can now run all cells.  From the 'Run..Run all Cells' menu.   <br>
-Below cell 2, you should see an error because the Marketing User does not have access to certain columns:
+- You can now run all cells.  
+* From the 'Run..Run all Cells' menu.   <br>
+* Below cell 2, you should see an error because the Marketing User does not have access to certain columns:
 ![PICT7](./images/jupyter5.png)
 <br>
-Uncomment the line '#.select("Gross_Revenue", "Month", "Country")' and then run all cells again. <BR>
-This time, you should see data for both the 'United States' and 'Australia' in cell 3.
+- Remove the comments in the line '#.select("Gross_Revenue", "Month", "Country")' and the line above
+- Also, change 'df.show(10)' to 'df.show(100)'
+- Then run all cells again. <BR>
+- This time, you should see data for both the 'United States' and 'Australia' in cell 3.
 
 
 ### 4. To destroy the deployment [DO NOT RUN THIS, ITS JUST FYI]
