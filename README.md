@@ -379,12 +379,12 @@ kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 - In the second cell, change &lt;your-project-name-here&gt;to the your project name 
 ![PICT5](./images/jupyter2.png)
 <br>
-- In this example, the project name is 'biglake-demov4' as shown below:
+- In this example, the project name is 'biglake-demov4' as shown below:<br>
 ![PICT6](./images/jupyter8.png)
 <br>
 - You can now run all cells.  
 * From the 'Run..Run all Cells' menu.   <br>
-* Below cell 2, you should see an error because the Marketing User does not have access to certain columns:
+* Below cell 2, you should see an error because the Marketing User does not have access to certain columns: <br>
 ![PICT7](./images/jupyter5.png)
 <br>
 - Remove the comments in the line '#.select("Gross_Revenue", "Month", "Country")' and the line above
