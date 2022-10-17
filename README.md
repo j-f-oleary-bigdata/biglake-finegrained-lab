@@ -223,9 +223,9 @@ Validate that you have the following resources as shown in the screeshot below:
 ![PICT3](./images/bigquery.png) 
 
 
-### 4.5. Dataproc Instances (3)
+### 4.5. Cloud Dataproc Clusters
 
-From your admin account, go to the cloud console and then the Dataproc UI<br><br>
+From your default login (not as the 3 users created above), go to the cloud console and then the Dataproc UI<br><br>
 
 - Validate that you have the following three (3) Dataproc Clusters: 
 1. aus-dataproc-cluster
@@ -234,21 +234,45 @@ From your admin account, go to the cloud console and then the Dataproc UI<br><br
 <br><br>
 ![PICT3](./images/dataproc.png) 
 
-### 3.3. Jupyter Notebook (USA User)
+<hr>
 
-### 3.3.1 Create a personal authentication session...
+### 4. Fine-grained Access Control Lab
+
+So far, you completed the environment setup and validation. In this sub-module, you will learn the fine grained access control made possible by BigLake.
+
+#### 4.1. Navigate to BigQuery and query the sample table
+In your current default user login, navigate to BigQuery. You should see a dataset biglake_dataset and a table called "biglake_dataset.IceCreamSales" 
+Try to query the table-
+
+```
+SELECT * FROM `biglake-spark-demo.biglake_dataset.IceCreamSales` LIMIT 1000
+```
+
+You should not see any results, infact your should see the following error-
+```
+Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor masked get permission to get data protected by policy tag "Business-Critical-225879788342 : Financial Data" on columns biglake-spark-demo.biglake_dataset.IceCreamSales.Discount, biglake-spark-demo.biglake_dataset.IceCreamSales.Net_Revenue.
+```
+
+This is a demonstration of applying principle of least privilege - administrators should not have access to data with in the IceCreamSales table.
+
+
+#### 4.2. Login to the USA user account (has restricted access)
+Switch profiles to the usa_user account in your Chrome browser. This account has been configured in BigLake via Terraform to ONLY have access to data with country 'USA'.
+
+##### 4.2.1 Create a personal authentication session...
 
 - From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
 - Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
 ![PICT4](./images/dataproc_user.png)
 <br><br>
-Click on the usa-dataproc-cluster link<br>
-Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
+- Click on the usa-dataproc-cluster link<br>
+- Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
 <br>
 Enter the following text:
 <br>
 Make sure to subsitute your project name for &lt;your project name here&gt;
 <br><br>
+
 ```
 gcloud dataproc clusters enable-personal-auth-session \
     --project=<your project name here> \
