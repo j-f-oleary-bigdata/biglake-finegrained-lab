@@ -60,7 +60,7 @@ For more information see these instructions --> [Add Profile Instructions](https
 
 ### 2.1. Products/services used in the lab
 The following services and resources will be created via Terraform scripts:
-<br><br>
+
 1. VPC, Subnetwork and NAT rules
 2. IAM Groups for USA and Australia
 3. Dataplex Policy for Column level Access
