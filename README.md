@@ -5,7 +5,7 @@ This module showcases fine-grained access control made possible by BigLake with 
 
 ## 1. Prerequisites 
 
-### 1.1. Create a project".<br>
+### 1.1. Create a project
 Note the project number and project ID. <br>
 We will need this for the rest fo the lab.
 
