@@ -7,15 +7,18 @@ This module covers the foundational setup required for the BigLake Fine Grained 
 
 ### 1. Create a project".<br>
 Note the project number and project ID. <br>
-We will need this for the rest fo the lab.<br>
+We will need this for the rest fo the lab.
+
 ### 2. Grant yourself security admin role<br>
 This is needed for the networking setup.<br>
 Go to Cloud IAM and through the UI, grant yourself security admin role.
+
 ### 3. Grant yourself Organization Policy Administrator at an Organization level<br>
 This is needed to set project level policies<br>
 In the UI, set context to organization level (instead of project)<br>
 Go to Cloud IAM and through the UI, grant yourself Organization Policy Administrator at an Organization level.<br>
 Don't forget to set the project back to the project you created in Step 1 above in the UI.
+
 ### 4. Create 3 user accounts<br>
 Go To admin.google.com...<br>
 * Click on 'Add a user'<br>
@@ -33,7 +36,8 @@ Go To admin.google.com...<br>
 2. aus_user <br>
 3. mkt_user <br>
 
-<br> <br>
+<br>
+
 ### 5. Create Separate Chrome Profiles for 1 or More of the User Accounts
 To make it easier to demo the three different personas (users) we recommend you set up 3 profiles in your browser<br>
 <br>
@@ -44,16 +48,16 @@ To make it easier to demo the three different personas (users) we recommend you 
 <br>
 
 We recommend you setup three profiles: <br>
-#1. One for the USA User
-#2. One for the Australia User
-#3. And one for the Marketing User
-
+1. One for the USA User
+2. One for the Australia User
+3. And one for the Marketing User
 
 For more information see these instructions --> [Add Profile Instructions](https://support.google.com/chrome/answer/2364824?hl=en)
 
 ### Steps in the lab:
 <br><br>
 
+<hr>
 
 ## 1. Details about the environment that is setup by this module
 
@@ -73,15 +77,12 @@ The following services and resources will be created via Terraform scripts:
 1. Terraform for automation
 2. Cloud Shell for executing Terraform
 
-<hr>
-
 ## 2. Provision the GCP environment 
 
 ### 2.1. Create a Cloud Shell Session
 <br><br>
 
 ### 2.2. Clone the workshop git repo
-
 ```
 cd ~
 git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-demo
@@ -93,7 +94,6 @@ git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-demo
 ```
 cd ~/biglake-finegrained-demo/
 ```
-
 
 #### 2.3.2. What we will do next
 
@@ -108,9 +108,7 @@ cd ~/biglake-finegrained-demo/
 #### 2.4.1. Define variables for use
 
 Modify the below as appropriate for your deployment..e.g. region, zone etc. Be sure to use the right case for GCP region & zone.<br>
-Make sure to replace the ORG_ID variable with your own organization id!!!<br><br>
 Make the corrections as needed below and then cut and paste the text into the Cloud Shell Session. <br>
-
 
 ```
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
@@ -133,20 +131,17 @@ echo "AUS_USERNAME=$AUS_USERNAME"
 echo "MKT_USERNAME=$MKT_USERNAME"
 ```
 
-### 2.4.2. Initialize Terraform for Orginization Policy Configuration
-
-<br><br>
-
+### 2.4.2. Initialize Terraform for Organization Policy Configuration
+<br>
 Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+
 ```
 cd ~/biglake-finegrained-demo/org_policy
 terraform init
 ```
 
 ### 2.4.3. Run Provisioning for Orginization Policy Configuration
-
-<br><br>
-
+<br>
 Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 ```
 terraform apply \
