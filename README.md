@@ -87,6 +87,7 @@ This section covers creating the environment via Terraform from Cloud Shell.
 Instructions for launching and using cloud shell are available [here](https://cloud.google.com/shell/docs/launching-cloud-shell).
 
 ### 3.2. Clone the workshop git repo
+
 ```
 cd ~
 git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-demo
@@ -99,17 +100,17 @@ git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-demo
 cd ~/biglake-finegrained-demo/
 ```
 
-#### 3.3.2. What we will do next
+#### 3.3.2. Review the Terraform directory structure (& optionally, the content)
 
-1. Define variables for use by the Terraform
+Browse and familiarize yourself with the layout and optionally, review the scripts for an understanding of the constructs as well as how dependencies are managed.
+
+#### 3.3.3. What's involved with provisioning with Terraform
+
+1. Define variables for use with Terraform
 2. Initialize Terraform
 3. Run a Terraform plan & study it
 4. Apply the Terraform to create the environment
 5. Validate the environment created
-
-#### 3.3.3. Review the Terraform scripts
-
-If interested, review the scripts for an understanding of the constructs as well as how dependencies are managed.
 
 ### 3.4. Provision the environment
 
