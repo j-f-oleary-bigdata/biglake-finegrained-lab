@@ -163,7 +163,7 @@ terraform apply \
 ```
 
 
-#### 3.4.3. Initialize Terraform for the data analytics services & dependencies
+#### 3.4.3. Provision data analytics services & dependencies
 
 ##### 3.4.3.1. Initialize Terraform
 
@@ -236,7 +236,7 @@ From your default login (not as the 3 users created above), go to the cloud cons
 
 <hr>
 
-## 5. Fine-grained Access Control Lab
+## 5. Fine-grained Access Control Lab powered by BigLake
 
 So far, you completed the environment setup and validation. In this sub-module, you will learn the fine grained access control made possible by BigLake.
 
@@ -255,7 +255,6 @@ Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor maske
 ```
 
 This is a demonstration of applying **principle of least privilege** - administrators should not have access to data with in the IceCreamSales table.
-
 
 ### 5.2. Principle of Least Privilege: Country based restricted access - USA
 This section demonstrates how you can use BigLake to restrict access based on policies. We will show how the "usa_user" can only access data for USA in the IceCreamSales table - the security has been set up as part of Terraform provisioning.
