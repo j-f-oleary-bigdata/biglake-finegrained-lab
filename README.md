@@ -142,7 +142,7 @@ echo "MKT_USERNAME=$MKT_USERNAME"
 
 #### 3.4.2. Provision foundational resources
 
-Foundational resources in this lab, constitute Google APIs and Organizational Policies. 
+Foundational resources in this lab constitute Google APIs and Organizational Policies. 
 
 ##### 3.4.2.1. Initialize Terraform
 The command below needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
