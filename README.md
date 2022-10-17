@@ -294,21 +294,20 @@ Injecting initial credentials into the cluster usa-dataproc-cluster...done.
 Periodically refreshing credentials for cluster usa-dataproc-cluster. This will continue running until the command is interrupted...working.  
 ```
 
-6. **Leave this Cloud Shell running** while you complete the next steps**
+6. **Leave this Cloud Shell running** while you complete the next steps
 
 #### 5.2.3. Initiate the kerberos session on the Personal Dataproc Cluster...
 
-Still signed in as the USA user, navigate to the Cloud Console and then Dataproc UI:
+Still signed in as the USA user, in a separate tab in the same browser window, navigate to the cloud console (console.cloud.google.com) and then the Dataproc UI:
 
-1. Click on the usa-dataproc-cluster link<br>
+1. Click on the usa-dataproc-cluster link <br>
 2. Then click on the 'WEB INTERFACES' link <br>
 3. Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
-4. Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
+4. Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below: <br>
 ![PICT4](./images/jupyter1.png)
-<br><br>
+<br>
 5. In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
-6. In terminal screen, enter the following:
-
+6. In terminal screen, enter the following: <br>
 ```
 kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 ```
