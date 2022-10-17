@@ -9,7 +9,7 @@ This lab showcases fine-grained access control made possible by BigLake with a m
 Note the project number and project ID. <br>
 We will need this for the rest of the lab.
 
-### 1.2. Grant yourself security admin role<br>
+### 1.2. Grant yourself Security Administrator role<br>
 This is needed for the networking setup.<br>
 Go to Cloud IAM and through the UI, grant yourself security admin role.
 
