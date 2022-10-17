@@ -131,18 +131,17 @@ echo "AUS_USERNAME=$AUS_USERNAME"
 echo "MKT_USERNAME=$MKT_USERNAME"
 ```
 
-### 2.4.2. Initialize Terraform for Organization Policy Configuration
-
-Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+#### 2.4.2. Initialize Terraform for foundational resources
+Foundational resources in this demo, constitute Google APIs and Organizational Policies. The command below needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
 ```
 cd ~/biglake-finegrained-demo/org_policy
 terraform init
 ```
 
-### 2.4.3. Run Provisioning for Orginization Policy Configuration
+#### 2.4.3. Terraform deploy foundational resources
 
-Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
 ```
 terraform apply \
@@ -151,7 +150,7 @@ terraform apply \
 ```
 
 
-### 2.4.4. Initialize Terraform
+#### 2.4.4. Initialize Terraform for the data analytics services & dependencies
 
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
@@ -159,7 +158,8 @@ cd ~/biglake-finegrained-demo/demo
 terraform init
 ```
 
-#### 2.4.5. Review the Terraform deployment plan
+#### 2.4.5. Review the Terraform deployment plan for the data analytics services & dependencies
+
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
 terraform plan \
@@ -172,7 +172,8 @@ terraform plan \
   -var="mkt_username=${MKT_USERNAME}"   
 ```
 
-#### 2.4.6. Provision the environment
+#### 2.4.6. Provision the data analytics services & dependencies
+
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
 terraform apply \
@@ -185,12 +186,18 @@ terraform apply \
   -var="mkt_username=${MKT_USERNAME}" \
   --auto-approve
 ```
-
 <hr>
 
-## 3. Validate your Terraform deployment after the 'apply' from step 2.4.6 has completed successfully
+## 3. Validate the Terraform deployment
 
-### 3.1. BigQuery Dataset and Tables
+### 3.1. IAM users, groups, permissions
+
+
+### 3.2. Network
+
+### 3.3. Policy Tags and resource affiliation
+
+### 3.4. BigQuery Dataset and Tables
 
 From your admin account, go to the cloud console and then the BigQuery UI<br><br>
 Validate that you have the following resources as shown in the screeshot below:
@@ -201,7 +208,7 @@ Validate that you have the following resources as shown in the screeshot below:
 ![PICT3](./images/bigquery.png) 
 
 
-### 3.2. Dataproc Instances (3)
+### 3.5. Dataproc Instances (3)
 
 From your admin account, go to the cloud console and then the Dataproc UI<br><br>
 
