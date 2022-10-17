@@ -143,6 +143,7 @@ terraform init
 ### 2.4.3. Run Provisioning for Orginization Policy Configuration
 <br>
 Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+
 ```
 terraform apply \
   -var="project_id=${PROJECT_ID}" \
