@@ -60,12 +60,12 @@ For more information see these instructions --> [Add Profile Instructions](https
 ### 1.1. Products/services used in the lab
 The following services and resources will be created via Terraform scripts:
 <br><br>
-#1. VPC, Subnetwork and NAT rules
-#2. IAM Groups for USA and Australia
-#3. Dataplex Policy for Column level Access
-#4. BigQuery Dataset, Table and Row Level Policies
-#5. Three Dataproc 'Personal' Clusters: 1 for USA, Australia and Marketing Users
-#6. Preconfigured Jupyter Notebooks
+1. VPC, Subnetwork and NAT rules
+2. IAM Groups for USA and Australia
+3. Dataplex Policy for Column level Access
+4. BigQuery Dataset, Table and Row Level Policies
+5. Three Dataproc 'Personal' Clusters: 1 for USA, Australia and Marketing Users
+6. Preconfigured Jupyter Notebooks
 
 
 ### 1.2. Tooling
