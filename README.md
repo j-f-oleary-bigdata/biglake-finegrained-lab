@@ -38,7 +38,7 @@ Go To admin.google.com...<br>
 
 <br>
 
-### 1.5. Create Separate Chrome Profiles for 1 or More of the User Accounts
+### 1.5. Create Separate Chrome Profiles for the User Accounts
 To make it easier to demo the three different personas (users) we recommend you set up 3 profiles in your browser<br>
 <br>
 - To add a profile<br>
@@ -152,7 +152,7 @@ cd ~/biglake-finegrained-demo/org_policy
 terraform init
 ```
 
-#### 3.4.2.2. Terraform deploy the resources
+##### 3.4.2.2. Terraform deploy the resources
 
 The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
