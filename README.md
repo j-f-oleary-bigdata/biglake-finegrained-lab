@@ -1,25 +1,25 @@
 
 # About<br>
-This module covers the foundational setup required for the BigLake Fine Grained Permissions Demo.
+This module showcases fine-grained access control made possible by BigLake with a minimum viable Spark sample notebook. 
 
 
-## 0. Prerequisites 
+## 1. Prerequisites 
 
-### 1. Create a project".<br>
+### 1.1. Create a project".<br>
 Note the project number and project ID. <br>
 We will need this for the rest fo the lab.
 
-### 2. Grant yourself security admin role<br>
+### 1.2. Grant yourself security admin role<br>
 This is needed for the networking setup.<br>
 Go to Cloud IAM and through the UI, grant yourself security admin role.
 
-### 3. Grant yourself Organization Policy Administrator at an Organization level<br>
+### 1.3. Grant yourself Organization Policy Administrator at an Organization level<br>
 This is needed to set project level policies<br>
 In the UI, set context to organization level (instead of project)<br>
 Go to Cloud IAM and through the UI, grant yourself Organization Policy Administrator at an Organization level.<br>
 Don't forget to set the project back to the project you created in Step 1 above in the UI.
 
-### 4. Create 3 user accounts<br>
+### 1.4. Create 3 user accounts<br>
 Go To admin.google.com...<br>
 * Click on 'Add a user'<br>
 * And add a user as shown below:<br><br>
@@ -38,7 +38,7 @@ Go To admin.google.com...<br>
 
 <br>
 
-### 5. Create Separate Chrome Profiles for 1 or More of the User Accounts
+### 1.5. Create Separate Chrome Profiles for 1 or More of the User Accounts
 To make it easier to demo the three different personas (users) we recommend you set up 3 profiles in your browser<br>
 <br>
 - To add a profile<br>
@@ -54,48 +54,52 @@ We recommend you setup three profiles: <br>
 
 For more information see these instructions --> [Add Profile Instructions](https://support.google.com/chrome/answer/2364824?hl=en)
 
-### Steps in the lab:
-<br><br>
-
 <hr>
 
-## 1. Details about the environment that is setup by this module
+## 2. Details about the environment that is setup by this module
 
-### 1.1. Products/services used in the lab
+### 2.1. Products/services used in the lab
 The following services and resources will be created via Terraform scripts:
 <br><br>
 1. VPC, Subnetwork and NAT rules
 2. IAM Groups for USA and Australia
 3. Dataplex Policy for Column level Access
 4. BigQuery Dataset, Table and Row Level Policies
-5. Three Dataproc 'Personal' Clusters: 1 for USA, Australia and Marketing Users
+5. Dataproc 'Personal' Clusters: a cluster each for USA, Australia and Marketing Users
 6. Preconfigured Jupyter Notebooks
 
-
-### 1.2. Tooling
+### 2.2. Tooling
 
 1. Terraform for automation
 2. Cloud Shell for executing Terraform
 
-## 2. Provision the GCP environment 
+<hr>
 
-### 2.1. Create a Cloud Shell Session
+## 3. Provision the GCP environment 
+
+This section covers creating the environment via Terraform from Cloud Shell.
+1. Launch cloud shell
+2. Clone this git repo
+3. Provision foundational resources such as Google APIs and Organization Policies
+4. Provision the GCP data Analytics services and their dependencies for the lab
+
+### 3.1. Create a Cloud Shell Session
 Instructions for launching and using cloud shell are available [here](https://cloud.google.com/shell/docs/launching-cloud-shell).
 
-### 2.2. Clone the workshop git repo
+### 3.2. Clone the workshop git repo
 ```
 cd ~
 git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-demo
 ```
 
-### 2.3. About the Terraform script
+### 3.3. About the Terraform scripts
 
-#### 2.3.1. Navigate to the Terraform directory
+#### 3.3.1. Navigate to the Terraform directory
 ```
 cd ~/biglake-finegrained-demo/
 ```
 
-#### 2.3.2. What we will do next
+#### 3.3.2. What we will do next
 
 1. Define variables for use by the Terraform
 2. Initialize Terraform
@@ -103,9 +107,13 @@ cd ~/biglake-finegrained-demo/
 4. Apply the Terraform to create the environment
 5. Validate the environment created
 
-### 2.4. Provision the environment
+#### 3.3.3. Review the Terraform scripts
 
-#### 2.4.1. Define variables for use
+If interested, review the scripts for an understanding of the constructs as well as how dependencies are managed.
+
+### 3.4. Provision the environment
+
+#### 3.4.1. Define variables for use
 
 Modify the below as appropriate for your deployment..e.g. region, zone etc. Be sure to use the right case for GCP region & zone.<br>
 Make the corrections as needed below and then cut and paste the text into the Cloud Shell Session. <br>
@@ -131,15 +139,19 @@ echo "AUS_USERNAME=$AUS_USERNAME"
 echo "MKT_USERNAME=$MKT_USERNAME"
 ```
 
-#### 2.4.2. Initialize Terraform for foundational resources
-Foundational resources in this demo, constitute Google APIs and Organizational Policies. The command below needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+#### 3.4.2. Provision foundational resources
+
+Foundational resources in this lab, constitute Google APIs and Organizational Policies. 
+
+##### 3.4.2.1. Initialize Terraform
+The command below needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
 ```
 cd ~/biglake-finegrained-demo/org_policy
 terraform init
 ```
 
-#### 2.4.3. Terraform deploy foundational resources
+#### 3.4.2.2. Terraform deploy the resources
 
 The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
@@ -150,7 +162,9 @@ terraform apply \
 ```
 
 
-#### 2.4.4. Initialize Terraform for the data analytics services & dependencies
+#### 3.4.3. Initialize Terraform for the data analytics services & dependencies
+
+##### 3.4.3.1. Initialize Terraform
 
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
@@ -158,7 +172,7 @@ cd ~/biglake-finegrained-demo/demo
 terraform init
 ```
 
-#### 2.4.5. Review the Terraform deployment plan for the data analytics services & dependencies
+##### 3.4.3.2. Review the Terraform deployment plan
 
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
@@ -172,7 +186,7 @@ terraform plan \
   -var="mkt_username=${MKT_USERNAME}"   
 ```
 
-#### 2.4.6. Provision the data analytics services & dependencies
+##### 3.4.3.3. Terraform provision the data analytics services & dependencies
 
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
@@ -188,16 +202,16 @@ terraform apply \
 ```
 <hr>
 
-## 3. Validate the Terraform deployment
+## 4. Validate the Terraform deployment
 
-### 3.1. IAM users, groups, permissions
+### 4.1. IAM users, groups, permissions
 
 
-### 3.2. Network
+### 4.2. Network
 
-### 3.3. Policy Tags and resource affiliation
+### 4.3. Policy Tags and Resource Affiliation
 
-### 3.4. BigQuery Dataset and Tables
+### 4.4. BigQuery Dataset and Tables
 
 From your admin account, go to the cloud console and then the BigQuery UI<br><br>
 Validate that you have the following resources as shown in the screeshot below:
@@ -208,7 +222,7 @@ Validate that you have the following resources as shown in the screeshot below:
 ![PICT3](./images/bigquery.png) 
 
 
-### 3.5. Dataproc Instances (3)
+### 4.5. Dataproc Instances (3)
 
 From your admin account, go to the cloud console and then the Dataproc UI<br><br>
 
