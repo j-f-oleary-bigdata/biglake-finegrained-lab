@@ -118,8 +118,7 @@ PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d'
 PROJECT_NAME=`gcloud projects describe ${PROJECT_ID} | grep name | cut -d':' -f2 | xargs`
 GCP_ACCOUNT_NAME=`gcloud auth list --filter=status:ACTIVE --format="value(account)"`
 LOCATION="us-central1"
-#ORG_ID="joeuser.altostrat.com"  #EXAMPLE
-ORG_ID="<your or here!!!>"
+ORG_ID=`gcloud organizations list --format="value(name)"`
 YOUR_GCP_MULTI_REGION="US"
 USA_USERNAME="usa_user"
 AUS_USERNAME="aus_user"
