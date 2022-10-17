@@ -80,7 +80,7 @@ The following services and resources will be created via Terraform scripts:
 ## 2. Provision the GCP environment 
 
 ### 2.1. Create a Cloud Shell Session
-<br><br>
+Instructions for launching and using cloud shell are available [here](https://cloud.google.com/shell/docs/launching-cloud-shell).
 
 ### 2.2. Clone the workshop git repo
 ```
@@ -132,7 +132,7 @@ echo "MKT_USERNAME=$MKT_USERNAME"
 ```
 
 ### 2.4.2. Initialize Terraform for Organization Policy Configuration
-<br>
+
 Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
 ```
@@ -141,7 +141,7 @@ terraform init
 ```
 
 ### 2.4.3. Run Provisioning for Orginization Policy Configuration
-<br>
+
 Needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
 
 ```
@@ -152,8 +152,6 @@ terraform apply \
 
 
 ### 2.4.4. Initialize Terraform
-
-<br><br>
 
 Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
 ```
