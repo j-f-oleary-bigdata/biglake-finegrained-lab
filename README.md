@@ -268,6 +268,10 @@ Switch profiles to the usa_user account in your Chrome browser. Make sure to sel
 
 #### 5.2.2. Create a personal authentication session...
 
+1. Go to console.cloud.google.com
+2. Launch cloud shell
+3. Paste the below to create a personal authentication session
+
 ```
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 
@@ -278,21 +282,20 @@ gcloud dataproc clusters enable-personal-auth-session \
    usa-dataproc-cluster
 ```
 
-You will be prompted with:
+4. You will be prompted with the below; Respond with a 'Y', followed by enter
 ```
 A personal authentication session will propagate your personal credentials to the cluster, so make sure you trust the cluster and the user who created it.
 
 Do you want to continue (Y/n)?
 ```
 
-Respond with 'Y' and hit enter <br>
-You will see the following text
+5. You will see the following text
 ```
 Injecting initial credentials into the cluster usa-dataproc-cluster...done.     
 Periodically refreshing credentials for cluster usa-dataproc-cluster. This will continue running until the command is interrupted...working.  
 ```
 
-**Leave this Cloud Shell running while you complete the next steps**
+6. **Leave this Cloud Shell running** while you complete the next steps**
 
 #### 5.2.3. Initiate the kerberos session on the Personal Dataproc Cluster...
 
