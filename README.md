@@ -236,13 +236,14 @@ From your default login (not as the 3 users created above), go to the cloud cons
 
 <hr>
 
-### 5. Fine-grained Access Control Lab
+## 5. Fine-grained Access Control Lab
 
 So far, you completed the environment setup and validation. In this sub-module, you will learn the fine grained access control made possible by BigLake.
 
-#### 5.1. Navigate to BigQuery and query the sample table 
-In your current default user login, navigate to BigQuery. You should see a dataset biglake_dataset and a table called "biglake_dataset.IceCreamSales" 
-Try to query the table-
+### 5.1. Principle of Least Privilege: Administrators should not have access to data
+In your current default user login, navigate to BigQuery on the Cloud Console. You should see a dataset biglake_dataset and a table called "biglake_dataset.IceCreamSales".
+<br>
+Run the query below in the BQ query UI-
 
 ```
 SELECT * FROM `biglake-spark-demo.biglake_dataset.IceCreamSales` LIMIT 1000
@@ -256,26 +257,22 @@ Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor maske
 This is a demonstration of applying **principle of least privilege** - administrators should not have access to data with in the IceCreamSales table.
 
 
-#### 5.2. Login to the USA user account (has restricted access)
-Switch profiles to the usa_user account in your Chrome browser. This account has been configured in BigLake via Terraform to ONLY have access to data with country 'USA'.
+### 5.2. Principle of Least Privilege: Country based restricted access - USA
+This section demonstrates how you can use BigLake to restrict access based on policies. We will show how the "usa_user" can only access data for USA in the IceCreamSales table - the security has been set up as part of Terraform provisioning.
 
-##### 5.2.1 Create a personal authentication session...
+#### 5.2.1. Switch to the "usa_user" profile
 
-- From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
-- Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
+Switch profiles to the usa_user account in your Chrome browser. Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
+
 ![PICT4](./images/dataproc_user.png)
-<br>
-- Click on the usa-dataproc-cluster link<br>
-- Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
-<br>
-Enter the following text:
-<br>
-Make sure to subsitute your project name for &lt;your project name here&gt;
-<br><br>
+
+#### 5.2.2. Create a personal authentication session...
 
 ```
+PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+
 gcloud dataproc clusters enable-personal-auth-session \
-    --project=<your project name here> \
+    --project=${PROJECT_ID} \
     --region=us-central1 \
     --access-boundary=<(echo -n "{}") \
    usa-dataproc-cluster
@@ -295,13 +292,11 @@ Injecting initial credentials into the cluster usa-dataproc-cluster...done.
 Periodically refreshing credentials for cluster usa-dataproc-cluster. This will continue running until the command is interrupted...working.  
 ```
 
-Leave this Cloud Shell running while you complete the next steps.
+**Leave this Cloud Shell running while you complete the next steps**
 
-### 3.3.2 Initiate the kerberos session on the Personal Dataproc Cluster...
-From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
-Make sure to select the project you created at the beginning of the lab.  In this example, the project is 'biglake-demov4'.
-<br><br>
-#Next:
+#### 5.2.3. Initiate the kerberos session on the Personal Dataproc Cluster...
+
+Still signed in as the USA user, navigate to the Cloud Console and then Dataproc UI:
 
 1. Click on the usa-dataproc-cluster link<br>
 2. Then click on the 'WEB INTERFACES' link <br>
@@ -309,34 +304,39 @@ Make sure to select the project you created at the beginning of the lab.  In thi
 4. Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
 ![PICT4](./images/jupyter1.png)
 <br><br>
-In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
-In terminal screen, enter the following:
+5. In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
+6. In terminal screen, enter the following:
 
 ```
 kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 ```
 <br>
-You can then close the the terminal screen.
+7. You can then close the the terminal screen.
 
-### 3.3.3 Run the 'IceCream.ipynb' Notebook...
-From the Jupyter Lab tab you created above, doublce click on the 'IceCream.ipynb' file as shown below...<br>
-1. Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
+#### 5.2.4. Run the 'IceCream.ipynb' Notebook...
+From the Jupyter Lab tab you created above, double click on the 'IceCream.ipynb' file as shown below...<br>
+
+1. Then click on the icon on the right that says 'Python 3' with a circle next to it...
+
 2. A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
 ![PICT5](./images/jupyter6.png)
-<br><br>
+<br>
 
-In the second cell, 
+3. In the second cell, 
 - change &lt;your-project-name-here&gt; to the your project name 
 ![PICT5](./images/jupyter2.png)
 <br><br>
 - In this example, the project name is 'biglake-demov4' as shown below:
 ![PICT6](./images/jupyter3.png)
 <br><br>
-- You can now run all cells.  
-* From the 'Run..Run all Cells' menu.   <br>
+4. You can now run all cells.  
+* From the 'Run->Run all Cells' menu.   <br>
 * Below cell 3, you should see data only for the 'United States' as shown below:
 ![PICT7](./images/jupyter4.png)
 <br><br>
+
+
+# TODO
 
 ### 3.4. Jupyter Notebook (Aus User - aus_user)
 
