@@ -236,11 +236,11 @@ From your default login (not as the 3 users created above), go to the cloud cons
 
 <hr>
 
-### 4. Fine-grained Access Control Lab
+### 5. Fine-grained Access Control Lab
 
 So far, you completed the environment setup and validation. In this sub-module, you will learn the fine grained access control made possible by BigLake.
 
-#### 4.1. Navigate to BigQuery and query the sample table
+#### 5.1. Navigate to BigQuery and query the sample table 
 In your current default user login, navigate to BigQuery. You should see a dataset biglake_dataset and a table called "biglake_dataset.IceCreamSales" 
 Try to query the table-
 
@@ -253,18 +253,18 @@ You should not see any results, infact your should see the following error-
 Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor masked get permission to get data protected by policy tag "Business-Critical-225879788342 : Financial Data" on columns biglake-spark-demo.biglake_dataset.IceCreamSales.Discount, biglake-spark-demo.biglake_dataset.IceCreamSales.Net_Revenue.
 ```
 
-This is a demonstration of applying principle of least privilege - administrators should not have access to data with in the IceCreamSales table.
+This is a demonstration of applying **principle of least privilege** - administrators should not have access to data with in the IceCreamSales table.
 
 
-#### 4.2. Login to the USA user account (has restricted access)
+#### 5.2. Login to the USA user account (has restricted access)
 Switch profiles to the usa_user account in your Chrome browser. This account has been configured in BigLake via Terraform to ONLY have access to data with country 'USA'.
 
-##### 4.2.1 Create a personal authentication session...
+##### 5.2.1 Create a personal authentication session...
 
 - From your USA User Account (usa_user in this example), go to the cloud console and then the Dataproc UI<br><br>
 - Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
 ![PICT4](./images/dataproc_user.png)
-<br><br>
+<br>
 - Click on the usa-dataproc-cluster link<br>
 - Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
 <br>
