@@ -7,7 +7,7 @@ This lab showcases fine-grained access control made possible by BigLake with a m
 
 ### 1.1. Create a project
 Note the project number and project ID. <br>
-We will need this for the rest fo the lab.
+We will need this for the rest of the lab.
 
 ### 1.2. Grant yourself security admin role<br>
 This is needed for the networking setup.<br>
