@@ -2,7 +2,6 @@
 # About<br>
 This lab showcases fine-grained access control made possible by BigLake with a minimum viable Spark sample notebook on a Cloud Dataproc cluster. 
 
-
 ## 1. Prerequisites 
 
 ### 1.1. Create a project
@@ -62,11 +61,13 @@ For more information see these instructions --> [Add Profile Instructions](https
 The following services and resources will be created via Terraform scripts:
 
 1. VPC, Subnetwork and NAT rules
-2. IAM Groups for USA and Australia
-3. Dataplex Policy for Column level Access
-4. BigQuery Dataset, Table and Row Level Policies
-5. Dataproc 'Personal' Clusters: a cluster each for USA, Australia and Marketing Users
-6. Preconfigured Jupyter Notebooks
+2. IAM groups for USA and Australia
+3. IAM permissions for user principals and Google Managed default service accounts
+4. GCS buckets, for each user principal and for Dataproc temp bucket
+5. Dataplex Policy for Column level Access
+6. BigQuery Dataset, Table and Row Level Policies
+7. Dataproc 'Personal auth' (kerberized) Clusters: a cluster each for USA, Australia and Marketing Users
+8. Pre-created Jupyter Notebooks are uploaded to the GCS 
 
 ### 2.2. Tooling
 
