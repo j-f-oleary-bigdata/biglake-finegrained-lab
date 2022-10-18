@@ -272,7 +272,6 @@ From your default login (not as the 3 users created above), go to the cloud cons
 ### 4.8. Notebook copy to each Dataproc cluster's Dataproc bucket
 Each of the three buckets (dataproc-bucket-aus/usa/mkt-YOUR_PROJECT_NUMBER) below should have the following in the exact directory structure:
 1. notebooks/jupyter/IceCream.ipynb
-2. notebooks/jupyter/ReadData.ipynb
 
 ### 4.9. Policy Tag Taxonomies
 Navigate to Dataplex->Policy Tag Taxonomies and you should see a policy tag called -
