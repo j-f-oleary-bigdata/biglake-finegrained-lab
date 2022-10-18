@@ -435,6 +435,9 @@ Valid starting     Expires            Service principal
 #### 5.2.4. Run the 'IceCream.ipynb' Notebook...
 From the Jupyter Lab tab you created above, double click on the 'IceCream.ipynb' file as shown below...<br>
 
+<br>**About the notebook:**
+This notebook demonstrates finegrained BigLake powered permissions, with a Icecream Sales Forecasting forecasting, with PySpark for preprocessing and Python with Prophet for forecasting, with the source data in a BigLake table. <br>
+
 1. Then click on the icon on the right that says 'Python 3' with a circle next to it...
 
 2. A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
