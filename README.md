@@ -336,7 +336,7 @@ This is a demonstration of applying **principle of least privilege** - administr
 
 ### 5.2. Principle of Least Privilege: USA country based restricted row and column access
 This section demonstrates how you can use BigLake to restrict access based on policies. <br>
-1. Row Level Security: "usa_user" can only access data for (Country=) USA in the IceCreamSales table 
+1. Row Level Security: "usa_user" can only access data for (Country=)United States in the IceCreamSales table 
 2. Column Level Security: "usa_user" can see the columns Discount and Net_Revenue 
 
 **What to expect:**
@@ -361,12 +361,12 @@ Switch profiles to the usa_user account in your Chrome browser. Make sure to sel
 
 ```
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
-
+USER_PREFIX="usa"
 gcloud dataproc clusters enable-personal-auth-session \
     --project=${PROJECT_ID} \
     --region=us-central1 \
     --access-boundary=<(echo -n "{}") \
-   usa-dataproc-cluster
+   ${USER_PREFIX}-dataproc-cluster
 ```
 
 4. You will be prompted with the below; Respond with a 'Y', followed by enter
@@ -433,39 +433,46 @@ Valid starting     Expires            Service principal
 8. You can then close the the terminal screen.
 
 #### 5.2.4. Run the 'IceCream.ipynb' Notebook...
-From the Jupyter Lab tab you created above, double click on the 'IceCream.ipynb' file as shown below...<br>
 
-<br>**About the notebook:**
+**About the notebook:** <br>
 This notebook demonstrates finegrained BigLake powered permissions, with a Icecream Sales Forecasting forecasting, with PySpark for preprocessing and Python with Prophet for forecasting, with the source data in a BigLake table. <br>
 
-1. Then click on the icon on the right that says 'Python 3' with a circle next to it...
+1. From the Jupyter Lab tab you created above, double click on the 'IceCream.ipynb' file as shown below...<br>
 
-2. A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
+2. Then click on the icon on the right that says 'Python 3' with a circle next to it...
+
+3. A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
 ![PICT5](./images/jupyter6.png)
 <br>
 
-3. In the second cell, 
-- change &lt;your-project-name-here&gt; to the your project name 
-![PICT5](./images/jupyter2.png)
-<br><br>
-- In this example, the project name is 'biglake-demov4' as shown below:
-![PICT6](./images/jupyter3.png)
-<br><br>
 4. You can now run all cells.  
 * From the 'Run->Run all Cells' menu.   <br>
-* Below cell 3, you should see data only for the 'United States' as shown below:
+* Below cell 13, you should see data only for the 'United States' as shown below:
 ![PICT7](./images/jupyter4.png)
 <br><br>
 
+This concludes the exercise of row and column level security powered by Biglake. Lets repeat the same with the user aus_user@
 
-# TODO
 
-### 3.4. Jupyter Notebook (Aus User - aus_user)
+### 5.3. Principle of Least Privilege: Australia country based restricted row and column access
+This section demonstrates how you can use BigLake to restrict access based on policies. <br>
+1. Row Level Security: "aus_user" can only access data for (Country=)Australia in the IceCreamSales table 
+2. Column Level Security: "aus_user" can see the columns Discount and Net_Revenue 
 
-Follow steps 3.2.1 and 3.2.2 and 3.2.3 from above but choose the aus-dataproc-cluster instead.<br>
-- Remember to use the 'aus-dataproc-cluster' when running the 'gcloud dataproc clusters...' command <br>
-
-- The major difference is that in cell 3, you should see data only for the 'Australia' as shown below:
+Follow steps 5.2.1 through 5.2.4 from above but -<br>
+- Login to an incognito browser as aus_user
+- Use the command below to start a personal auth session <br>
+```
+PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+USER_PREFIX="aus"
+gcloud dataproc clusters enable-personal-auth-session \
+    --project=${PROJECT_ID} \
+    --region=us-central1 \
+    --access-boundary=<(echo -n "{}") \
+   ${USER_PREFIX}-dataproc-cluster
+```
+- Log into the aus-dataproc-cluster cluster
+- The major difference is that in cell 12, you should see data only for the 'Australia' as shown below:
 ![PICT8](./images/jupyter7.png)
 <br>
 <hr>
