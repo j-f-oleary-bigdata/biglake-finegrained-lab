@@ -2,6 +2,10 @@
 # About<br>
 This lab showcases fine-grained access control made possible by BigLake with a minimum viable Spark sample notebook on a Cloud Dataproc cluster. 
 
+
+
+# BigLake Finegrained Permissions Lab with Spark on Dataproc
+
 ## 1. Prerequisites 
 
 ### 1.1. Create a project
