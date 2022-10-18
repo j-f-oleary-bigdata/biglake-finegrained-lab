@@ -91,7 +91,7 @@ Go To admin.google.com...<br>
 <br>
 
 ### 1.5. Create Separate Chrome Profiles for the User Accounts
-To make it easier to demo the three different personas (users) we recommend you set up 3 profiles in your browser<br>
+To make it easier to use the three different personas (users) we recommend you set up 3 profiles in your browser<br>
 <br>
 - To add a profile<br>
 * click on your profile picture at the far right of the screen next to the vertical 3 dots. <br>
@@ -144,14 +144,14 @@ Instructions for launching and using cloud shell are available [here](https://cl
 
 ```
 cd ~
-git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-demo
+git clone https://github.com/j-f-oleary-bigdata/biglake-finegrained-lab
 ```
 
 ### 3.3. About the Terraform scripts
 
 #### 3.3.1. Navigate to the Terraform directory
 ```
-cd ~/biglake-finegrained-demo/
+cd ~/biglake-finegrained-lab/
 ```
 
 #### 3.3.2. Review the Terraform directory structure (& optionally, the content)
@@ -199,16 +199,16 @@ echo "MKT_USERNAME=$MKT_USERNAME"
 Foundational resources in this lab constitute Google APIs and Organizational Policies. 
 
 ##### 3.4.2.1. Initialize Terraform
-The command below needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+The command below needs to run in cloud shell from ~/biglake-finegrained-lab/org_policy
 
 ```
-cd ~/biglake-finegrained-demo/org_policy
+cd ~/biglake-finegrained-lab/org_policy
 terraform init
 ```
 
 ##### 3.4.2.2. Terraform deploy the resources
 
-The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy. <br>
+The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-lab/org_policy. <br>
 
 **Time taken to complete:** <5 minutes
 
@@ -222,15 +222,15 @@ terraform apply \
 
 ##### 3.4.3.1. Initialize Terraform
 
-Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
+Needs to run in cloud shell from ~/biglake-finegrained-lab/demo
 ```
-cd ~/biglake-finegrained-demo/demo
+cd ~/biglake-finegrained-lab/demo
 terraform init
 ```
 
 ##### 3.4.3.2. Review the Terraform deployment plan
 
-Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
+Needs to run in cloud shell from ~/biglake-finegrained-lab/demo
 ```
 terraform plan \
   -var="project_id=${PROJECT_ID}" \
@@ -244,7 +244,7 @@ terraform plan \
 
 ##### 3.4.3.3. Terraform provision the data analytics services & dependencies
 
-Needs to run in cloud shell from ~/biglake-finegrained-demo/demo. 
+Needs to run in cloud shell from ~/biglake-finegrained-lab/demo. 
  <br>
 
 **Time taken to complete:** <10 minutes
@@ -275,8 +275,8 @@ Validate IAM users in the project, by navigating on Cloud Console to -
 
 ### 4.2. IAM groups
 
-1. Group: australia-sales	with email: australia-sales@akhanolkar.altostrat.com with the user usa_user@ in it
-2. Group: us-sales	with email: us-sales@akhanolkar.altostrat.com with the user aus_user@ in it	
+1. Group: australia-sales	with email: australia-sales@YOUR_ORG_NAME with the user usa_user@ in it
+2. Group: us-sales	with email: us-sales@YOUR_ORG_NAME with the user aus_user@ in it	
 
 ### 4.3. IAM roles
 
@@ -376,12 +376,12 @@ In your current default user login, navigate to BigQuery on the Cloud Console. Y
 Run the query below in the BQ query UI-
 
 ```
-SELECT * FROM `biglake-spark-demo.biglake_dataset.IceCreamSales` LIMIT 1000
+SELECT * FROM `biglake_dataset.IceCreamSales` LIMIT 1000
 ```
 
 You should not see any results, infact your should see the following error-
 ```
-Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor masked get permission to get data protected by policy tag "Business-Critical-225879788342 : Financial Data" on columns biglake-spark-demo.biglake_dataset.IceCreamSales.Discount, biglake-spark-demo.biglake_dataset.IceCreamSales.Net_Revenue.
+Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor masked get permission to get data protected by policy tag "Business-Critical-225879788342 : Financial Data" on columns biglake_dataset.IceCreamSales.Discount, biglake_dataset.IceCreamSales.Net_Revenue.
 ```
 
 This is a demonstration of applying **principle of least privilege** - administrators should not have access to data with in the IceCreamSales table.
@@ -401,7 +401,10 @@ This section demonstrates how you can use BigLake to restrict access based on po
 
 #### 5.2.1. Switch to the "usa_user" profile
 
-Switch profiles to the usa_user account in your Chrome browser. Make sure to select the project you created in the step above.  In this example, the project is 'biglake-demov4' as shown below:
+Switch profiles to the usa_user account in your Chrome browser. Make sure to select the project you created in the step above.  <br>
+**NOTE:** If the Chrome profile for the user does not show the user as part of an organization, close that browser and open an incognito browser and login and complete the lab.
+
+In this example, the project is 'biglake-demov4' as shown below:
 
 ![PICT4](./images/dataproc_user.png)
 
