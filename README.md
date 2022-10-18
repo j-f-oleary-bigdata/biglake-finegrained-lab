@@ -588,9 +588,9 @@ Congratulations on completing the lab!<br>
 
 You can (a) shutdown the project altogether in GCP Cloud Console or (b) use Terraform to destroy. Use (b) at your own risk as its a little glitchy while (a) is guaranteed to stop the billing meter pronto.
 <br>
-Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
+Needs to run in cloud shell from ~/biglake-finegrained-lab/demo
 ```
-cd ~/biglake-finegrained-demo/demo
+cd ~/biglake-finegrained-lab/demo
 terraform destroy \
   -var="project_id=${PROJECT_ID}" \
   -var="project_nbr=${PROJECT_NBR}" \
