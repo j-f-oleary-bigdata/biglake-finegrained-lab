@@ -2,21 +2,9 @@
 # About the lab<br>
 This lab showcases fine-grained access control made possible by BigLake with a minimum viable example of Icecream sales forecasting on a Spark notebook hosted on a personal auth Cloud Dataproc cluster. 
 
-### Dataset
-Kaggle Icecream Sales
 
 ### Use case
 Sales forecasting with Prophet
-
-### BigLake Finegrained Permissions 
-Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
-
-Three users are created as part of the lab.
-1. usa_user@ - RLS & CLS: has access to all columns of data with Country in USA
-2. aus_user@ - RLS & CLS: has access to all columns of data with Country in Australia
-3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
-
-Through a PySpark notebook that is run for each of the three user personas, we will demonstrate how the access varies based on finegrained permissions.
 
 ### Goals
 1. Just enough knowledge of creating and using BigLake tables on files in Cloud Storage
@@ -25,8 +13,28 @@ Through a PySpark notebook that is run for each of the three user personas, we w
 4. Accessing BigLake through PySpark with the BigQuery Spark connector from Google Cloud
 5. Just enough Terraform for automating provisioning, that can be repurposed for your workloads
 
+### Lab flow
+![flow](./images/flow.png) 
+
+
+### Dataset
+Kaggle Icecream Sales
+
+![data](./images/data.png) 
+
 ### Solution Architecture
-[TODO]
+
+![architecture](./images/architecture.png) 
+
+### BigLake Finegrained Permissions 
+Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
+
+Three users are created as part of the lab, with finegrained access implemented-
+1. usa_user@ - RLS & CLS: has access to all columns of data with Country in USA
+2. aus_user@ - RLS & CLS: has access to all columns of data with Country in Australia
+3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
+
+Through a PySpark notebook that is run for each of the three user personas, we will learn how access varies based on finegrained permissions.
 
 ### Key Products
 1. Cloud IAM - Users, groups, group memberships, roles
