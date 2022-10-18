@@ -458,9 +458,9 @@ This section demonstrates how you can use BigLake to restrict access based on po
 1. Row Level Security: "aus_user" can only access data for (Country=)Australia in the IceCreamSales table 
 2. Column Level Security: "aus_user" can see the columns Discount and Net_Revenue 
 
-Follow steps 5.2.1 through 5.2.4 from above but -<br>
-- Login to an incognito browser as aus_user
-- Use the command below to start a personal auth session <br>
+Follow steps 5.2.1 through 5.2.4 from above, abbreviated for your convenienc-<br>
+1. Login to an incognito browser as aus_user
+2. Use the command below to start a personal auth session in gcloud<br>
 ```
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 USER_PREFIX="aus"
@@ -470,10 +470,16 @@ gcloud dataproc clusters enable-personal-auth-session \
     --access-boundary=<(echo -n "{}") \
    ${USER_PREFIX}-dataproc-cluster
 ```
-- Log into the aus-dataproc-cluster cluster
-- The major difference is that in cell 12, you should see data only for the 'Australia' as shown below:
+3. Log into the aus-dataproc-cluster cluster, and go to "WEB INTERFACES" and click on JupyterLab
+4. In JupyterLab, open terminal and run kinit to authenticate and get a ticket
+```
+kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
+```
+
+5. The major difference is that in cell 12, you should see data only for the 'Australia' as shown below:
 ![PICT8](./images/jupyter7.png)
 <br>
+
 <hr>
 
 ### 3.5. Jupyter Notebook (Marketing User - mkt_user)
