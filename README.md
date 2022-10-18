@@ -1,5 +1,5 @@
 
-# About<br>
+# About the lab<br>
 This lab showcases fine-grained access control made possible by BigLake with a minimum viable Spark sample notebook on a Cloud Dataproc cluster. 
 
 
