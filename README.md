@@ -611,3 +611,8 @@ terraform destroy \
   --auto-approve
  ```
 
+<hr>
+
+This concludes the lab. 
+
+<hr>
