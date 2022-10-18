@@ -6,7 +6,7 @@ This lab showcases fine-grained access control made possible by BigLake with a m
 Kaggle Icecream Sales
 
 ### Use case
-Sales forcasting with Prophet
+Sales forecasting with Prophet
 
 ### BigLake Finegrained Permissions 
 Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
@@ -15,6 +15,15 @@ Three users are created as part of the lab.
 1. usa_user@ - RLS & CLS: has access to all columns of data with Country in USA
 2. aus_user@ - RLS & CLS: has access to all columns of data with Country in Australia
 3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
+
+Through a PySpark notebook that is run for each of the three user personas, we will demonstrate how the access varies based on finegrained permissions.
+
+### Goals
+1. Just enough knowledge of creating and using BigLake tables on files in Cloud Storage
+2. Just enough knowledge of Row and Column Level Security setup with BigLake
+3. Introduction to notebooks on Dataproc in case you are new to Dataproc
+4. Accessing BigLake through PySpark with the BigQuery Spark connector from Google Cloud
+5. Just enough Terraform for automating provisioning, that can be repurposed for your workloads
 
 ### Solution Architecture
 [TODO]
