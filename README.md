@@ -44,7 +44,7 @@ Through a PySpark notebook that is run for each of the three user personas, we w
 5. Cloud Dataproc - Spark on JupyterLab for forecasting icecream sales
 
 ### Technology & Libraries
-1. Data preprocessing at scale: Spark - PySpark
+1. Data preprocessing at scale: Spark, specifically PySpark
 2. Forecasting: Prophet with Python
 
 ### Duration to run through the lab
