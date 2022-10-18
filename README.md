@@ -334,8 +334,18 @@ Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor maske
 
 This is a demonstration of applying **principle of least privilege** - administrators should not have access to data with in the IceCreamSales table.
 
-### 5.2. Principle of Least Privilege: Country based restricted access - USA
-This section demonstrates how you can use BigLake to restrict access based on policies. We will show how the "usa_user" can only access data for USA in the IceCreamSales table - the security has been set up as part of Terraform provisioning.
+### 5.2. Principle of Least Privilege: USA country based restricted row and column access
+This section demonstrates how you can use BigLake to restrict access based on policies. <br>
+1. Row Level Security: "usa_user" can only access data for (Country=) USA in the IceCreamSales table 
+2. Column Level Security: "usa_user" can see the columns Discount and Net_Revenue 
+
+**What to expect:**
+1. You will log on as the usa_user in an incognito browser
+2. First, you will launch Cloud Shell in the Cloud Console and create a personal authentication session that you will keep running for the duration of this lab section
+3. Next, you will go to the Dataproc UI on the Cloud Console, go to "WEB INTERFACES" and launch JupyterLab
+4. In JupyterLab, you will first launch a terminal session and authenticate yourself and get a Kerberos ticket by running 'kinit'
+5. Then you will run through the notebook
+
 
 #### 5.2.1. Switch to the "usa_user" profile
 
@@ -372,25 +382,44 @@ Injecting initial credentials into the cluster usa-dataproc-cluster...done.
 Periodically refreshing credentials for cluster usa-dataproc-cluster. This will continue running until the command is interrupted...working.  
 ```
 
-6. **Leave this Cloud Shell running** while you complete the next steps
+6. **LEAVE** this Cloud Shell **RUNNING** while you complete the next steps, **DO NOT SHUT DOWN**
 
-#### 5.2.3. Initiate the kerberos session on the Personal Dataproc Cluster...
+#### 5.2.3. Initiate the kerberos session on the Personal Auth Dataproc Cluster...
 
 Still signed in as the USA user, in a separate tab in the same browser window, navigate to the cloud console (console.cloud.google.com) and then the Dataproc UI:
 
 1. Click on the usa-dataproc-cluster link <br>
 2. Then click on the 'WEB INTERFACES' link <br>
 3. Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
-4. Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below: <br>
+4. Click on the 'JupyterLab' link (not to be confused with Jupyter) and this should bring up a new tab as shown below: <br>
 ![PICT4](./images/jupyter1.png)
 <br>
-5. In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
-6. In terminal screen, enter the following: <br>
+5. In Jupyter, Click on "File"->New Launcher and then ->Terminal (at bottom of screen under 'Other' <br>
+6. In terminal screen, we will authenticate, by running kinit; Copy-paste the below into the terminal window: <br>
+
 ```
 kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 ```
+
 <br>
-7. You can then close the the terminal screen.
+7. Next validate the creation of the Kerberos ticket by running the below command-
+
+```
+klist
+```
+
+Author's output-
+
+```
+Ticket cache: FILE:/tmp/krb5cc_1001
+Default principal: dataproc/gdpsc-usa-dataproc-cluster-m.us-central1-a.c.biglake-dataproc-spark-lab.internal@US-CENTRAL1-A.C.BIGLAKE-DATAPROC-SPARK-LAB.INTERNAL
+
+Valid starting     Expires            Service principal
+10/18/22 14:44:05  10/19/22 00:44:05  krbtgt/US-CENTRAL1-A.C.BIGLAKE-DATAPROC-SPARK-LAB.INTERNAL@US-CENTRAL1-A.C.BIGLAKE-DATAPROC-SPARK-LAB.INTERNAL
+        renew until 10/25/22 14:44:05
+```
+
+8. You can then close the the terminal screen.
 
 #### 5.2.4. Run the 'IceCream.ipynb' Notebook...
 From the Jupyter Lab tab you created above, double click on the 'IceCream.ipynb' file as shown below...<br>
