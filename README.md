@@ -49,8 +49,8 @@ Fully scripted, with detailed instructions intended for learning, not necessaril
 
 | # | Google Cloud Collaborators | Contribution  | 
 | -- | :--- | :--- |
-| 1. | Dataproc Product Management and Engineering | Inspiration, vision and sample |
-| 2. | Jay O' Leary, Customer Engineer | Creator of lab |
+| 1. | Dataproc Product Management and Engineering (Antonio Scaramuzzino and Pedro Melendez) | Inspiration, vision and sample |
+| 2. | Jay O' Leary, Customer Engineer | Automation of lab |
 | 3. | Anagha Khanolkar, Customer Engineer | Contributor |
 
 ### Contributions welcome
