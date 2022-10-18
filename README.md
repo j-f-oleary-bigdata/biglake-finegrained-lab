@@ -388,20 +388,31 @@ Periodically refreshing credentials for cluster usa-dataproc-cluster. This will 
 
 Still signed in as the USA user, in a separate tab in the same browser window, navigate to the cloud console (console.cloud.google.com) and then the Dataproc UI:
 
-1. Click on the usa-dataproc-cluster link <br>
-2. Then click on the 'WEB INTERFACES' link <br>
-3. Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
+1. Click on the usa-dataproc-cluster link 
+<br>
+
+2. Then click on the 'WEB INTERFACES' link 
+<br>
+
+3. Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' 
+<br>
+
 4. Click on the 'JupyterLab' link (not to be confused with Jupyter) and this should bring up a new tab as shown below: <br>
 ![PICT4](./images/jupyter1.png)
 <br>
-5. In Jupyter, Click on "File"->New Launcher and then ->Terminal (at bottom of screen under 'Other' <br>
-6. In terminal screen, we will authenticate, by running kinit; Copy-paste the below into the terminal window: <br>
+
+5. In Jupyter, Click on "File"->New Launcher and then ->Terminal (at bottom of screen under 'Other' 
+<br>
+
+6. In terminal screen, we will authenticate, by running kinit; Copy-paste the below into the terminal window: 
+<br>
 
 ```
 kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 ```
 
 <br>
+
 7. Next validate the creation of the Kerberos ticket by running the below command-
 
 ```
@@ -418,7 +429,7 @@ Valid starting     Expires            Service principal
 10/18/22 14:44:05  10/19/22 00:44:05  krbtgt/US-CENTRAL1-A.C.BIGLAKE-DATAPROC-SPARK-LAB.INTERNAL@US-CENTRAL1-A.C.BIGLAKE-DATAPROC-SPARK-LAB.INTERNAL
         renew until 10/25/22 14:44:05
 ```
-
+<br>
 8. You can then close the the terminal screen.
 
 #### 5.2.4. Run the 'IceCream.ipynb' Notebook...
