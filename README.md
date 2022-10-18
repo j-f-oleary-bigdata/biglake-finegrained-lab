@@ -8,7 +8,7 @@ Kaggle Icecream Sales
 ### Use case
 Sales forcasting with Prophet
 
-### BigLake Finegrained Permissions Showcased
+### BigLake Finegrained Permissions 
 Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
 
 Three users are created as part of the lab.
