@@ -305,7 +305,6 @@ A BigLake table called IceCreamSales -
 5. With column 'Discount' tied to the Policy Tag created -'Financial Data'
 6. With column 'Net_Revenue' tied to the Policy Tag created -'Financial Data'
 
-
 ![PICT3](./images/bigquery.png) 
 
 ### 4.16. Row Access Policies
