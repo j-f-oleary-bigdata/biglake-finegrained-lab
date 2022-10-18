@@ -30,6 +30,12 @@ Three users are created as part of the lab.
 1. Data preprocessing at scale: Spark - PySpark
 2. Forecasting: Prophet with Python
 
+### Duration to run through the lab
+~ 90 minutes
+
+### Lab format
+Fully scripted, with detailed instructions intended for learning, not necessarily challenging
+
 ### Credits
 
 | # | Google Cloud Collaborators | Contribution  | 
