@@ -1,7 +1,6 @@
 
 # About the lab<br>
-This lab showcases fine-grained access control made possible by BigLake with a minimum viable example of Icecream sales forecasting on a Spark notebook hosted on a personal auth Cloud Dataproc cluster. 
-
+This lab showcases fine-grained access control made possible by [BigLake](https://cloud.google.com/bigquery/docs/biglake-intro) with a minimum viable example of Icecream sales forecasting on a Spark notebook hosted on a personal auth [Cloud Dataproc](https://cloud.google.com/dataproc) cluster. 
 
 ### Use case
 Sales forecasting with Prophet
@@ -15,7 +14,6 @@ Sales forecasting with Prophet
 
 ### Lab flow
 ![flow](./images/flow.png) 
-
 
 ### Dataset
 Kaggle dataset for Icecream Sales
