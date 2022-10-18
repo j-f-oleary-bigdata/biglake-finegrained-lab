@@ -2,9 +2,52 @@
 # About the lab<br>
 This lab showcases fine-grained access control made possible by BigLake with a minimum viable Spark sample notebook on a Cloud Dataproc cluster. 
 
+### Dataset
+Kaggle Icecream Sales
 
+### Use case
+Sales forcasting with Prophet
 
-# BigLake Finegrained Permissions Lab with Spark on Dataproc
+### BigLake Finegrained Permissions Showcased
+Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
+
+Three users are created as part of the lab.
+1. usa_user@ - RLS & CLS: has access to all columns of data with Country in USA
+2. aus_user@ - RLS & CLS: has access to all columns of data with Country in Australia
+3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
+
+### Solution Architecture
+[TODO]
+
+### Key Products
+1. Cloud IAM - Users, groups, group memberships, roles
+2. Cloud Storage - raw data & notebook, Dataproc temp bucket and staging bucket
+3. Dataplex Data Catalog - policy tag taxonomy, policy tag
+4. Biglake - finegrained row level and column level security on CSV in GCS
+5. Cloud Dataproc - Spark on JupyterLab for forecasting icecream sales
+
+### Technology & Libraries
+1. Data preprocessing at scale: Spark - PySpark
+2. Forecasting: Prophet with Python
+
+### Credits
+
+| # | Google Cloud Collaborators | Contribution  | 
+| -- | :--- | :--- |
+| 1. | Dataproc Product Management and Engineering | Inspiration, vision and sample |
+| 2. | Jay O' Leary, Customer Engineer | Creator of lab |
+| 3. | Anagha Khanolkar, Customer Engineer | Contributor |
+
+### Contributions welcome
+Community contribution to improve the lab is very much appreciated. <br>
+
+### Getting help
+If you have any questions or if you found any problems with this repository, please report through GitHub issues.
+
+<hr>
+<hr>
+
+# BigLake Finegrained Permissions Lab
 
 ## 1. Prerequisites 
 
