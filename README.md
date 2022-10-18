@@ -1,6 +1,6 @@
 
 # About the lab<br>
-This lab showcases fine-grained access control made possible by BigLake with a minimum viable Spark sample notebook on a Cloud Dataproc cluster. 
+This lab showcases fine-grained access control made possible by BigLake with a minimum viable example of Icecream sales forecasting on a Spark notebook hosted on a personal auth Cloud Dataproc cluster. 
 
 ### Dataset
 Kaggle Icecream Sales
@@ -23,7 +23,7 @@ Three users are created as part of the lab.
 1. Cloud IAM - Users, groups, group memberships, roles
 2. Cloud Storage - raw data & notebook, Dataproc temp bucket and staging bucket
 3. Dataplex Data Catalog - policy tag taxonomy, policy tag
-4. Biglake - finegrained row level and column level security on CSV in GCS
+4. Biglake - finegrained row level and column level security on CSV in Cloud Storage
 5. Cloud Dataproc - Spark on JupyterLab for forecasting icecream sales
 
 ### Technology & Libraries
@@ -45,7 +45,7 @@ Community contribution to improve the lab is very much appreciated. <br>
 If you have any questions or if you found any problems with this repository, please report through GitHub issues.
 
 <hr>
-<hr>
+
 
 # BigLake Finegrained Permissions Lab
 
