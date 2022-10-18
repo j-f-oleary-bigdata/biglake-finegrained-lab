@@ -404,7 +404,7 @@ Access Denied: BigQuery BigQuery: User has neither fine-grained reader nor maske
 This is a demonstration of applying **principle of least privilege** - administrators should not have access to data with in the IceCreamSales table.
 
 ### 5.2. Principle of Least Privilege: USA country based restricted row and column access
-This section demonstrates how you can use BigLake to restrict access based on policies. <br>
+This section demonstrates how you can use BigLake to restrict access based on policies from a PySpark notebook. You can also run a query against the table in BigQuery directly and see the same security enforced. <br>
 1. Row Level Security: "usa_user" can only access data for (Country=)United States in the IceCreamSales table 
 2. Column Level Security: "usa_user" can see the columns Discount and Net_Revenue 
 
@@ -522,6 +522,7 @@ This notebook demonstrates finegrained BigLake powered permissions, with a Icecr
 * Below cell 13, you should see data only for the 'United States' as shown below:
 ![PICT7](./images/jupyter4.png)
 <br><br>
+
 
 This concludes the exercise of row and column level security powered by Biglake. Lets repeat the same with the user aus_user@
 
