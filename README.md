@@ -77,7 +77,7 @@ The following services and resources will be created via Terraform scripts:
 
 ## 3. Provision the GCP environment 
 
-This section covers creating the environment via Terraform from Cloud Shell.
+This section covers creating the environment via Terraform from Cloud Shell. 
 1. Launch cloud shell
 2. Clone this git repo
 3. Provision foundational resources such as Google APIs and Organization Policies
@@ -154,14 +154,15 @@ terraform init
 
 ##### 3.4.2.2. Terraform deploy the resources
 
-The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy
+The terraform below first enables Google APIs needed for the demo, and then updates organization policies. It needs to run in cloud shell from ~/biglake-finegrained-demo/org_policy. <br>
+
+**Time taken to complete:** <5 minutes
 
 ```
 terraform apply \
   -var="project_id=${PROJECT_ID}" \
   --auto-approve
 ```
-
 
 #### 3.4.3. Provision data analytics services & dependencies
 
@@ -189,7 +190,11 @@ terraform plan \
 
 ##### 3.4.3.3. Terraform provision the data analytics services & dependencies
 
-Needs to run in cloud shell from ~/biglake-finegrained-demo/demo
+Needs to run in cloud shell from ~/biglake-finegrained-demo/demo. 
+ <br>
+
+**Time taken to complete:** <10 minutes
+
 ```
 terraform apply \
   -var="project_id=${PROJECT_ID}" \
@@ -205,34 +210,107 @@ terraform apply \
 
 ## 4. Validate the Terraform deployment
 
-### 4.1. IAM users, groups, permissions
+From your default GCP account (NOT to be confused with the three users we created), go to the Cloud Console, and validate the creation of the following resources-
 
+### 4.1. IAM users
+Validate IAM users in the project, by navigating on Cloud Console to -
+1. Youself
+2. usa_user
+3. aus_user
+4. mkt_user
 
-### 4.2. Network
+### 4.2. IAM groups
 
-### 4.3. Policy Tags and Resource Affiliation
+1. Group: australia-sales	with email: australia-sales@akhanolkar.altostrat.com with the user usa_user@ in it
+2. Group: us-sales	with email: us-sales@akhanolkar.altostrat.com with the user aus_user@ in it	
 
-### 4.4. BigQuery Dataset and Tables
+### 4.3. IAM roles
 
-From your admin account, go to the cloud console and then the BigQuery UI<br><br>
-Validate that you have the following resources as shown in the screeshot below:
-1. An external connection called 'us-central1.biglake.gcs'
-2. A dataset called biglake_dataset
-3. A table called IceCreamSales
-<br><br>
-![PICT3](./images/bigquery.png) 
+a) User Principles:<br>
+1. usa_user: Viewer, Dataproc Editor
+2. aus_user: Viewer and Dataproc Editor
+3. mkt_user: Viewer and Dataproc Editor
+<br>
 
+b) Google Managed Compute Engine Default Service Account:<br>
+4. YOUR_PROJECT_NUMBER-compute@developer.gserviceaccount.com: Dataproc Worker
+<br>
 
-### 4.5. Cloud Dataproc Clusters
+c) BigQuery Connection Default Service Account:<br>
+Covered below
 
-From your default login (not as the 3 users created above), go to the cloud console and then the Dataproc UI<br><br>
+### 4.4. GCS buckets
+1. dataproc-bucket-aus-YOUR_PROJECT_NUMBER
+2. dataproc-bucket-mkt-YOUR_PROJECT_NUMBER
+3. dataproc-bucket-usa-YOUR_PROJECT_NUMBER
+4. dataproc-temp-YOUR_PROJECT_NUMBER
 
-- Validate that you have the following three (3) Dataproc Clusters: 
+### 4.5. GCS bucket permissions
+1. dataproc-bucket-aus-YOUR_PROJECT_NUMBER: Storage Admin to aus_user@
+2. dataproc-bucket-mkt-YOUR_PROJECT_NUMBER: Storage Admin to mkt_user@
+3. dataproc-bucket-usa-YOUR_PROJECT_NUMBER: Storage Admin to aus_user@
+4. dataproc-temp-YOUR_PROJECT_NUMBER: Storage Admin to all three users created
+
+### 4.6. Network resources
+Validate the creation of-
+1. VPC called default
+2. Subnet called default
+3. Firewall called subnet-firewall
+4. Cloud Router called nat-router
+5. Cloud NAT gateway called nat-config
+
+### 4.7. Cloud Dataproc Clusters
+
+From your default login (not as the 3 users created above), go to the cloud console and then the Dataproc UI & validate the creation of the following three Dataproc Clusters: 
 1. aus-dataproc-cluster
 2. usa-dataproc-cluster
 3. mkt-dataproc-cluster
 <br><br>
 ![PICT3](./images/dataproc.png) 
+
+### 4.8. Notebook copy to each Dataproc cluster's Dataproc bucket
+Each of the three buckets (dataproc-bucket-aus/usa/mkt-YOUR_PROJECT_NUMBER) below should have the following in the exact directory structure:
+1. notebooks/jupyter/IceCream.ipynb
+2. notebooks/jupyter/ReadData.ipynb
+
+### 4.9. Policy Tag Taxonomies
+Navigate to Dataplex->Policy Tag Taxonomies and you should see a policy tag called -
+1. Business-Critical-YOUR_PROJECT_NUMBER
+
+### 4.10. Policy Tag
+Click on the Policy Tag Taxonomy in Dataplex and you should see a Policy Tag called -
+1. Financial Data
+
+### 4.11. User association with Policy Tag
+Each of the two users usa_user@ & aus_user@ are granted datacatalog.categoryFineGrainedReader tied to the Policy Tag created
+
+### 4.12. BigLake Connection
+Navigate to BigQuery in the Cloud Console and you should see, under "External Connections" -
+1. An external connection called 'us-central1.biglake.gcs'
+
+### 4.13. BigQuery Dataset
+In the BigQuery console, you should see a dataset called-
+1. biglake_dataset
+
+### 4.14. IAM role to BigQuery External Connection Default Service Account
+bqcx-YOUR_PROJECT_NUMBER@gcp-sa-bigquery-condel.iam.gserviceaccount.com: Storage Object Viewer	
+
+### 4.15. BigLake Table
+A BigLake table called IceCreamSales -
+1. That uses the Biglake connection 'us-central1.biglake.gcs'
+2. With CSV configuration 
+3. On CSV file at - gs://dataproc-bucket-aus-YOUR_PROJECT_NUMBER/data/IceCreamSales.csv
+4. With a set schema
+5. With column 'Discount' tied to the Policy Tag created -'Financial Data'
+6. With column 'Net_Revenue' tied to the Policy Tag created -'Financial Data'
+
+
+![PICT3](./images/bigquery.png) 
+
+### 4.16. Row Access Policies
+Create Row Access Policies, one for each user - aus_user@ and usa_user@ -
+1. Row Access Policy for the BigLake table IceCreamSales called 'Australia_filter' associated with the IAM group australia-sales@ on filter Country="Australia"
+2. Row Access Policy for the BigLake table IceCreamSales called 'US_filter' associated with the IAM group us-sales@ on filter Country="United States"
 
 <hr>
 
