@@ -18,7 +18,7 @@ Sales forecasting with Prophet
 
 
 ### Dataset
-Kaggle Icecream Sales
+Kaggle dataset for Icecream Sales
 
 ![data](./images/data.png) 
 
