@@ -482,93 +482,53 @@ kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 
 <hr>
 
-### 3.5. Jupyter Notebook (Marketing User - mkt_user)
+### 5.4. Principle of Least Privilege: Restricted column access for the marketing user (no access to financial data)
+This section demonstrates how you can use BigLake to restrict access based on policies. <br>
+1. Row Level Security: mkt_user@ can access data for any country in the IceCreamSales table (unlike aus_user@ and usa_user@ that could see data only for their country)
+2. Column Level Security: mkt_user@ can see all the columns except sensitive data columns Discount and Net_Revenue for which the user does not have permissions
 
-### 3.5.1 Create a personal authentication session...
-
-- From your Marketing User Account (mkt_user in this example), 
-* go to the cloud console and then the Dataproc UI<br><br>
-* Make sure to select the project you created in the step above.  
-* In this example, the project is 'biglake-demov4' as shown below:
-![PICT4](./images/dataproc_user.png)
-<br><br>
-- Click on the mkt-dataproc-cluster link<br>
-* Open up a new cloudshell session by click on the cloudshell link that looks like this --> '>_'<br>
-<br>
-* Enter the following text:
-<br>
-* Make sure to subsitute your project name for &lt;your-project-name-here&gt;
-<br><br>
+Follow steps 5.2.1 through 5.2.4 from above, abbreviated for your convenienc-<br>
+1. Login to an incognito browser as mkt_user
+2. Use the command below to start a personal auth session in gcloud<br>
 ```
+PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+USER_PREFIX="mkt"
 gcloud dataproc clusters enable-personal-auth-session \
-    --project=<your project name here> \
+    --project=${PROJECT_ID} \
     --region=us-central1 \
     --access-boundary=<(echo -n "{}") \
-   mkt-dataproc-cluster
+   ${USER_PREFIX}-dataproc-cluster
 ```
-
-- You will be prompted with:
-```
-A personal authentication session will propagate your personal credentials to the cluster, so make sure you trust the cluster and the user who created it.
-
-Do you want to continue (Y/n)?
-```
-
-- Respond with 'Y' and hit enter <br>
-* You will see the following text
-```
-Injecting initial credentials into the cluster usa-dataproc-cluster...done.     
-Periodically refreshing credentials for cluster usa-dataproc-cluster. This will continue running until the command is interrupted...working.  
-```
-
-- Leave this Cloud Shell running while you complete the next steps.
-
-### 3.5.2 Initiate the kerberos session on the Personal Dataproc Cluster...
-- From your Marketing User Account (mkt_user in this example), 
-* go to the cloud console and then the Dataproc UI<br><br>
-* Make sure to select the project you created at the beginning of the lab.  
-* In this example, the project is 'biglake-demov4'.
-<br><br>
-- Click on the usa-dataproc-cluster link<br>
-* Then click on the 'WEB INTERFACES' link <br>
-* Scroll to the bottom of the page and you should see a link for 'Jupyter Lab' <br>
-* Click on the 'Jupyter Lab' link and this should bring up a new tab as shown below:
-![PICT4](./images/jupyter1.png)
-<br><br>
-- In Jupyter, Click on File..New Launcher and then Terminal (at bottom of screen under 'Other' <br>
-* In terminal screen, enter the following:
-
+3. Log into the mkt-dataproc-cluster cluster, and go to "WEB INTERFACES" and click on JupyterLab
+4. In JupyterLab, open terminal and run kinit to authenticate and get a ticket
 ```
 kinit -kt /etc/security/keytab/dataproc.service.keytab dataproc/$(hostname -f)
 ```
-<br>
-- You can then close the the terminal screen.
 
-### 3.5.3 Run the 'ReadData.ipynb' Notebook...
-- From the Jupyter Lab tab you created above, 
-* doublce click on the 'ReadData.ipynb' file as shown below...<br>
-* Then click on the icon on the right that says 'Python 3' with a circle next to it...<br>
-* A dialog box that says 'Select Kernel' will appear, choose 'PySpark' and hit select
-![PICT5](./images/jupyter1.png)
-* In the second cell, change &lt;your-project-name-here&gt;to the your project name<br>
-![PICT5](./images/jupyter2.png)
+5.  Cell 6 will throw an error, because mkt_user does not have access to all the columns -> specifically does not have access to Discount and Net_Revenue. <br>
+Edit cell 5 as follows and run the rest of the cells. They shoudl execute file.
+```
+rawDF = spark.read \
+  .format("bigquery") \
+  .load(f"{PROJECT_NAME}.biglake_dataset.IceCreamSales") \
+  .select("Month", "Country", "Gross_Revenue")
+```
 
-* In this example, the project name is 'biglake-demov4' as shown below:<br>
-![PICT6](./images/jupyter8.png)
+To run the rest of the notebook from cell 5, go to the menu and click on "Run"->"Run Selected Cell And All Below" 
+
+6. **What's different is-**
+mkt_user@
+- Cannot see discount and net_revenue
+- Can see data for both australia and united states
+
+This concludes the validation of column level security with BigLake for the user, mkt_user@.
+
+<hr>
 
 
-- You can now run all cells.  
-* From the 'Run..Run all Cells' menu.   <br>
-* Below cell 2, you should see an error because the Marketing User does not have access to certain columns: <br>
-![PICT7](./images/jupyter5.png)
-<br>
-* Remove the comments in the line '#.select("Gross_Revenue", "Month", "Country")' and the line above<br>
-* Also, change 'df.show(10)' to 'df.show(100)'<br>
-* Then run all cells again. <br>
-* This time, you should see data for both the 'United States' and 'Australia' in cell 3.<br>
-<br>
+### 6. To destroy the deployment
 
-### 4. To destroy the deployment
+Congratulations on completing the lab!<br>
 
 You can (a) shutdown the project altogether in GCP Cloud Console or (b) use Terraform to destroy. Use (b) at your own risk as its a little glitchy while (a) is guaranteed to stop the billing meter pronto.
 <br>
