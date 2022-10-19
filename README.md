@@ -21,11 +21,11 @@ Kaggle dataset for Icecream Sales
 ![data](./images/data.png) 
 
 ### Solution Architecture
+This lab features Dataproc Personal Auth Clusters as the Spark infrastructure.
 
 ![architecture](./images/architecture.png) 
 
 
-<br>
 <br>
 
 **About Cloud Dataproc personal auth clusters:**
@@ -50,8 +50,10 @@ Three users are created as part of the lab, with finegrained access implemented-
 
 Through a PySpark notebook that is run for each of the three user personas, we will learn how access varies based on finegrained permissions.
 
-### Lab Setup
+### Column Level Security 
+Here is what is entailed from a setup perspective-
 
+![architecture-3](./images/architecture-3.png) 
 
 ### Key Products
 1. Cloud IAM - Users, groups, group memberships, roles
