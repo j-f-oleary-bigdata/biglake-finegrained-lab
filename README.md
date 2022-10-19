@@ -35,7 +35,6 @@ This lab features Dataproc Personal Auth Clusters as the Spark infrastructure, a
 
 ![architecture](./images/architecture.png) 
 
-<br>
 
 **About Cloud Dataproc personal auth clusters:**
 <br>
