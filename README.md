@@ -49,24 +49,26 @@ So effectively, the architecture is as depicted below-
 
 
 ### Column Level Security 
-Here is how Column Level Security is setup -
+The section covers Column Level Security setup.<br>
+
+**1. What's involved** <br>
 
 ![architecture-3](./images/architecture-3.png) 
 
 Effectively, only the users, usa_user@ and aus_user@ have access to columns IcecreamSales.Discount and IcecreamSales.Net_Revenue
 <br>
 
-Taxonomy:<br>
+**2. Taxonomy:** <br>
 
 ![taxonomy](./images/taxonomy.png) 
 
 <br>
-Policy Tag:
+**3. Policy Tag:** 
 
 ![policy-tag](./images/policy-tag.png) 
 
 <br>
-Table:
+**4. Table:**
 
 ![table-policy](./images/table.png) 
 
