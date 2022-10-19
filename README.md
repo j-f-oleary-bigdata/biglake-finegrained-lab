@@ -31,7 +31,7 @@ Three users are created as part of the lab, with finegrained access implemented-
 Through a PySpark notebook that is run for each of the three user personas, we will learn how access varies based on finegrained permissions.
 
 ### Solution Architecture
-This lab features Dataproc Personal Auth Clusters as the Spark infrastructure.
+This lab features Dataproc Personal Auth Clusters as the Spark infrastructure, and JupyterLab on Dataproc as the notebook infrastructure.
 
 ![architecture](./images/architecture.png) 
 
