@@ -27,12 +27,14 @@ Kaggle dataset for Icecream Sales
 
 <br>
 <br>
+
 **About Cloud Dataproc personal auth clusters:**
+<br>
 <br>
 - When you create a cluster with Personal Cluster Authentication enabled, the cluster will only be usable by a single identity. Other users will not be able to run jobs on the cluster or access Component Gateway endpoints on the cluster.
 - Clusters with Personal Cluster Authentication enabled automatically enable and configure Kerberos on the cluster for secure intra-cluster communication. However, all Kerberos identities on the cluster will interact with Google Cloud resources as the same user. (identity propagation, fine grained auditability)
 - Dataproc Personal Cluster Authentication is intended only for interactive jobs run by an individual (human) user. Long-running jobs and operations should configure and use an appropriate service account identity.
-<br>
+<br><br>
 So effectively, the architecture is as depicted below-
 
 ![architecture-2](./images/architecture-2.png) 
