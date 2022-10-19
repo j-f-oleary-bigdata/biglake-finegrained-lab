@@ -69,6 +69,7 @@ Effectively, only the users, usa_user@ and aus_user@ have access to columns Icec
 ![policy-tag](./images/policy-tag.png) 
 
 <br>
+
 **4. Table:**
 
 ![table-policy](./images/table.png) 
