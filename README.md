@@ -50,6 +50,7 @@ So effectively, the architecture is as depicted below-
 
 ### Column Level Security 
 Here is how Column Level Security is setup -
+
 ![architecture-3](./images/architecture-3.png) 
 
 Effectively, only the users, usa_user@ and aus_user@ have access to columns IcecreamSales.Discount and IcecreamSales.Net_Revenue
