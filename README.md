@@ -79,7 +79,7 @@ Effectively, only the users, usa_user@ and aus_user@ have access to columns Icec
 
 **5. Grants:**
 
-![grants](./images/cls-user.png) 
+![grants](./images/CLS-User.png) 
 
 
 ### Row Level Security 
