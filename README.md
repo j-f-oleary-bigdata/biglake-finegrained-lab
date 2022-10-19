@@ -63,6 +63,7 @@ Effectively, only the users, usa_user@ and aus_user@ have access to columns Icec
 ![taxonomy](./images/taxonomy.png) 
 
 <br>
+
 **3. Policy Tag:** 
 
 ![policy-tag](./images/policy-tag.png) 
