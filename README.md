@@ -20,11 +20,20 @@ Kaggle dataset for Icecream Sales
 
 ![data](./images/data.png) 
 
+### Design
+Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
+
+Three users are created as part of the lab, with finegrained access implemented-
+1. usa_user@ - RLS & CLS: has access to all columns of data with Country in USA
+2. aus_user@ - RLS & CLS: has access to all columns of data with Country in Australia
+3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
+
+Through a PySpark notebook that is run for each of the three user personas, we will learn how access varies based on finegrained permissions.
+
 ### Solution Architecture
 This lab features Dataproc Personal Auth Clusters as the Spark infrastructure.
 
 ![architecture](./images/architecture.png) 
-
 
 <br>
 
@@ -40,20 +49,33 @@ So effectively, the architecture is as depicted below-
 ![architecture-2](./images/architecture-2.png) 
 
 
-### Design
-Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
-
-Three users are created as part of the lab, with finegrained access implemented-
-1. usa_user@ - RLS & CLS: has access to all columns of data with Country in USA
-2. aus_user@ - RLS & CLS: has access to all columns of data with Country in Australia
-3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
-
-Through a PySpark notebook that is run for each of the three user personas, we will learn how access varies based on finegrained permissions.
-
 ### Column Level Security 
-Here is what is entailed from a setup perspective-
+Here is how Column Level Security is setup -
 
 ![architecture-3](./images/architecture-3.png) 
+
+Effectively, only the users, usa_user@ and aus_user@ have access to columns IcecreamSales.Discount and IcecreamSales.Net_Revenue
+<br>
+Taxonomy:
+
+![taxonomy](./images/taxonomy.png) 
+
+<br>
+Policy Tag:
+
+![policy-tag](./images/policy-tag.png) 
+
+<br>
+Table:
+
+![table-policy](./images/table.png) 
+
+
+### Row Level Security 
+Here is how Row Level Security is setup -
+
+
+
 
 ### Key Products
 1. Cloud IAM - Users, groups, group memberships, roles
