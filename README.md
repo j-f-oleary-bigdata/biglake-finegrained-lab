@@ -24,7 +24,20 @@ Kaggle dataset for Icecream Sales
 
 ![architecture](./images/architecture.png) 
 
-### BigLake Finegrained Permissions 
+
+<br>
+<br>
+**About Cloud Dataproc personal auth clusters:**
+- When you create a cluster with Personal Cluster Authentication enabled, the cluster will only be usable by a single identity. Other users will not be able to run jobs on the cluster or access Component Gateway endpoints on the cluster.
+- Clusters with Personal Cluster Authentication enabled automatically enable and configure Kerberos on the cluster for secure intra-cluster communication. However, all Kerberos identities on the cluster will interact with Google Cloud resources as the same user. (identity propagation, fine grained auditability)
+- Dataproc Personal Cluster Authentication is intended only for interactive jobs run by an individual (human) user. Long-running jobs and operations should configure and use an appropriate service account identity.
+<br>
+So effectively, the architecture is as depicted below-
+
+![architecture-2](./images/architecture-2.png) 
+
+
+### Design
 Row Level Security (RLS) and Column Level Security (CLS) is showcased. <br>
 
 Three users are created as part of the lab, with finegrained access implemented-
@@ -33,6 +46,9 @@ Three users are created as part of the lab, with finegrained access implemented-
 3. mkt_user@ - CLS: has access to all columns but Discount and Net_Revenue, but to data from all countries
 
 Through a PySpark notebook that is run for each of the three user personas, we will learn how access varies based on finegrained permissions.
+
+### Lab Setup
+
 
 ### Key Products
 1. Cloud IAM - Users, groups, group memberships, roles
