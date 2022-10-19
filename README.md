@@ -75,9 +75,18 @@ Effectively, only the users, usa_user@ and aus_user@ have access to columns Icec
 ![table-policy](./images/table.png) 
 
 
-### Row Level Security 
-Here is how Row Level Security is setup -
+<br>
 
+**5. Grants:**
+
+![grants](./images/cls-user.png) 
+
+
+### Row Level Security 
+
+The section covers Row Level Security setup.<br>
+
+**1. What's involved** <br>
 
 
 
