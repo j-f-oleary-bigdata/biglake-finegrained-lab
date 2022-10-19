@@ -2,7 +2,7 @@
 # About the lab<br>
 This lab showcases fine-grained access control made possible by [BigLake](https://cloud.google.com/bigquery/docs/biglake-intro) with a minimum viable example of Icecream sales forecasting on a Spark notebook hosted on a personal auth [Cloud Dataproc](https://cloud.google.com/dataproc) cluster. 
 
-### Use case
+### Use Case
 Sales forecasting with Prophet
 
 ### Goals
@@ -12,7 +12,7 @@ Sales forecasting with Prophet
 4. Accessing BigLake through PySpark with the BigQuery Spark connector from Google Cloud
 5. Just enough Terraform for automating provisioning, that can be repurposed for your workloads
 
-### Lab flow
+### Lab Flow
 ![flow](./images/flow.png) 
 
 ### Dataset
@@ -42,7 +42,7 @@ This lab features Dataproc Personal Auth Clusters as the Spark infrastructure, a
 - When you create a cluster with Personal Cluster Authentication enabled, the cluster will only be usable by a single identity. Other users will not be able to run jobs on the cluster or access Component Gateway endpoints on the cluster.
 - Clusters with Personal Cluster Authentication enabled automatically enable and configure Kerberos on the cluster for secure intra-cluster communication. However, all Kerberos identities on the cluster will interact with Google Cloud resources as the same user. (identity propagation, fine grained auditability)
 
-<br><br>
+<br>
 So effectively, the architecture is as depicted below-
 
 ![architecture-2](./images/architecture-2.png) 
@@ -50,12 +50,12 @@ So effectively, the architecture is as depicted below-
 
 ### Column Level Security 
 Here is how Column Level Security is setup -
-
 ![architecture-3](./images/architecture-3.png) 
 
 Effectively, only the users, usa_user@ and aus_user@ have access to columns IcecreamSales.Discount and IcecreamSales.Net_Revenue
 <br>
-Taxonomy:
+
+Taxonomy:<br>
 
 ![taxonomy](./images/taxonomy.png) 
 
