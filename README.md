@@ -90,7 +90,7 @@ The section covers Row Level Security setup.<br>
 
 ![rls](./images/RLS-1.png) 
 
-**2. Example
+**2. Example** <br>
 
 ![rls](./images/RLS-2.png) 
 
