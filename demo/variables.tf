@@ -17,7 +17,7 @@
 
 /** 
 * Replace the text in angle brackets '<>' with the appropriate values for 
-*  your argolis account and project
+*  your account and project
 */
 
 variable "org_id" {
