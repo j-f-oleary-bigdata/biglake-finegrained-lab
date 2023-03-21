@@ -127,7 +127,7 @@ Fully scripted, with detailed instructions intended for learning, not necessaril
 | -- | :--- | :--- |
 | 1. | Dataproc Product Management and Engineering (Antonio Scaramuzzino and Pedro Melendez) | Inspiration, vision and sample |
 | 2. | Jay O' Leary, Customer Engineer | Automation of lab |
-| 3. | Anagha Khanolkar, Customer Engineer | Diagrams, narrative, lab guide |
+| 3. | Anagha Khanolkar, Customer Engineer | Architecture, Diagrams, Narrative, Lab Guide, Testing, Ux |
 
 ### Contributions welcome
 Community contribution to improve the lab is very much appreciated. <br>
